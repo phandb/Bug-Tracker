@@ -25,7 +25,7 @@ public class BugDAOHibernateImpl implements BugDAO {
 	}
 
 	@Override
-	@Transactional
+	// @Transactional -- will use it in the service layer
 	public List<Bug> findAll() {
 		
 		// get the current hibernate session
@@ -39,6 +39,43 @@ public class BugDAOHibernateImpl implements BugDAO {
 		
 		// return the results
 		return bugs;
+	}
+
+	@Override
+	public Bug findById(int id) {
+		// get the current hibernate session
+		Session currentSession = entityManager.unwrap(Session.class)
+				;
+		// get the bug
+		Bug bug = currentSession.get(Bug.class, id);
+		
+		// return the bug
+		return bug;
+	}
+
+	@Override
+	public void save(Bug bug) {
+		// get the current hibernate session
+		Session currentSession = entityManager.unwrap(Session.class);
+		
+		// save the bug.  
+		// method saveOrUpdate() means
+		// if id=0 then save/insert;  otherwise update
+		currentSession.saveOrUpdate(bug);
+	}
+
+	@Override
+	public void deleteById(int theId) {
+		// get the current hibernate session
+		Session currentSession = entityManager.unwrap(Session.class);
+		
+		// delete the bug with primary key
+		Query query = currentSession.createQuery(
+				"delete from Bug where id=:bugId");
+		
+		query.setParameter("bugId", theId);
+		
+		query.executeUpdate();
 	}
 
 }
