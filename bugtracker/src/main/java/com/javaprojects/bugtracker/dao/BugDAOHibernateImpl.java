@@ -27,6 +27,7 @@ public class BugDAOHibernateImpl implements BugDAO {
 	@Override
 	@Transactional
 	public List<Bug> findAll() {
+		
 		// get the current hibernate session
 		Session currentSession = entityManager.unwrap(Session.class);
 		
