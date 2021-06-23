@@ -3,9 +3,11 @@ package com.javaprojects.bugtracker.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -71,6 +73,31 @@ public class BugRestController {
 		return bug;
 	}
 	
+	// add mapping for PUT /bug - Update existing bug
+	@PutMapping("/bugs")
+	public Bug updateBug(@RequestBody Bug bug) {
+		
+		bugService.save(bug);
+		
+		return bug;
+	}
+	
+	// add mapping for DELETE /bugs/{bugId}  - delete bug
+	@DeleteMapping("/bugs/{bugId}")
+	public String deleteBug(@PathVariable int bugId) {
+		
+		Bug tempBug = bugService.findById(bugId);
+		
+		// throw exception if null
+		
+		if (tempBug == null) {
+			throw new RuntimeException("Bug id not found - " + bugId);
+		}
+		
+		bugService.deleteById(bugId);
+		
+		return "Delete bug id - " + bugId;
+	}
 	
 	
 	
