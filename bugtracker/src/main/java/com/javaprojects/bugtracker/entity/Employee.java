@@ -1,10 +1,18 @@
 package com.javaprojects.bugtracker.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -29,6 +37,16 @@ public class Employee {
 	@Column(name="role")
 	private String role;
 	
+	// Configure Many to Many relationship with Bug class
+	@ManyToMany(fetch=FetchType.LAZY,
+			    cascade= {CascadeType.PERSIST, CascadeType.MERGE,
+			    		  CascadeType.DETACH, CascadeType.REFRESH })
+	@JoinTable(
+			name="bug_employee",
+			joinColumns=@JoinColumn(name="employee_id"),
+			inverseJoinColumns=@JoinColumn(name="bug_id")
+			)
+	private List<Bug> bugs;
 	
 	// Define constructor
 	
@@ -85,6 +103,25 @@ public class Employee {
 	public void setRole(String role) {
 		this.role = role;
 	}
+	
+	
+	public List<Bug> getBugs() {
+		return bugs;
+	}
+
+	public void setBugs(List<Bug> bugs) {
+		this.bugs = bugs;
+	}
+
+	// Add a convenience method
+	public void addBug(Bug bug) {
+		if (bugs == null) {
+			bugs = new ArrayList<>();
+		}
+		
+		bugs.add(bug);
+	}
+
 	
 	// toString
 
