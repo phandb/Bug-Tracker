@@ -25,6 +25,9 @@ public class Bug {
 	@Column(name="issued_on")
 	private Date issuedOn;
 	
+	@Column(name="created_by")
+	private String createdBy;
+	
 	@Column(name="status")
 	private String status;
 	
@@ -34,6 +37,8 @@ public class Bug {
 	@Column(name="tips")
 	private String tips;
 	
+	@Column(name="solved_by")
+	private String solvedBy;
 	
 	// define constructors
 	// No-argument constructor required by Hibernate
@@ -42,13 +47,16 @@ public class Bug {
 	}
 
 
-	public Bug(String type, Date issuedOn, String status, String description, String tips) {
-		
+	public Bug(String type, Date issuedOn, String createdBy, String status, String description, String tips,
+			String solvedBy) {
+
 		this.type = type;
 		this.issuedOn = issuedOn;
+		this.createdBy = createdBy;
 		this.status = status;
 		this.description = description;
 		this.tips = tips;
+		this.solvedBy = solvedBy;
 	}
 
 
@@ -115,14 +123,31 @@ public class Bug {
 	}
 
 
-	
-	// define to string
-	
+	public String getCreatedBy() {
+		return createdBy;
+	}
 
+
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+
+
+	public String getSolvedBy() {
+		return solvedBy;
+	}
+
+
+	public void setSolvedBy(String solvedBy) {
+		this.solvedBy = solvedBy;
+	}
+
+
+	
 	@Override
 	public String toString() {
-		return "Bug [id=" + id + ", type=" + type + ", issuedOn=" + issuedOn + ", status=" + status + ", description="
-				+ description + ", tips=" + tips + "]";
+		return "Bug [id=" + id + ", type=" + type + ", issuedOn=" + issuedOn + ", createdBy=" + createdBy + ", status="
+				+ status + ", description=" + description + ", tips=" + tips + ", solvedBy=" + solvedBy + "]";
 	}
 	
 	
