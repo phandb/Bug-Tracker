@@ -172,7 +172,7 @@ public class Bug {
 	}
 	
 	// Add a convenience method
-		public void addEmploee(Employee employee) {
+		public void addEmployeeToBug(Employee employee) {
 			if (employees == null) {
 				employees = new ArrayList<>();
 			}

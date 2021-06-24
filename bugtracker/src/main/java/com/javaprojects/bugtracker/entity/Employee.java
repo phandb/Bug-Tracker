@@ -114,7 +114,7 @@ public class Employee {
 	}
 
 	// Add a convenience method
-	public void addBug(Bug bug) {
+	public void addBugToEmployee(Bug bug) {
 		if (bugs == null) {
 			bugs = new ArrayList<>();
 		}
