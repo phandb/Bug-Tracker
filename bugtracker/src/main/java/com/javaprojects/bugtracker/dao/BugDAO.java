@@ -1,6 +1,7 @@
 package com.javaprojects.bugtracker.dao;
 
 import java.util.List;
+import java.util.Set;
 
 import com.javaprojects.bugtracker.entity.Bug;
 

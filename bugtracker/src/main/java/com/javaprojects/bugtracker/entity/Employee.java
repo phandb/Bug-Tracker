@@ -1,7 +1,9 @@
 package com.javaprojects.bugtracker.entity;
 
-import java.util.ArrayList;
-import java.util.List;
+
+
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -46,7 +48,7 @@ public class Employee {
 			joinColumns=@JoinColumn(name="employee_id"),
 			inverseJoinColumns=@JoinColumn(name="bug_id")
 			)
-	private List<Bug> bugs;
+	private Set<Bug> bugs = new HashSet<>();
 	
 	// Define constructor
 	
@@ -105,18 +107,18 @@ public class Employee {
 	}
 	
 	
-	public List<Bug> getBugs() {
+	public Set<Bug> getBugs() {
 		return bugs;
 	}
 
-	public void setBugs(List<Bug> bugs) {
+	public void setBugs(Set<Bug> bugs) {
 		this.bugs = bugs;
 	}
 
 	// Add a convenience method
 	public void addBugToEmployee(Bug bug) {
 		if (bugs == null) {
-			bugs = new ArrayList<>();
+			bugs = new HashSet<>();
 		}
 		
 		bugs.add(bug);

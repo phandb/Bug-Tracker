@@ -1,6 +1,7 @@
 package com.javaprojects.bugtracker.dao;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 

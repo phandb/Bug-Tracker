@@ -1,8 +1,8 @@
 package com.javaprojects.bugtracker.entity;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -56,7 +56,7 @@ public class Bug {
 				joinColumns=@JoinColumn(name="bug_id"),
 				inverseJoinColumns=@JoinColumn(name="employee_id")
 				)
-	private List<Employee> employees; 
+	private Set<Employee> employees = new HashSet<>();; 
 	
 	// define constructors
 	// No-argument constructor required by Hibernate
@@ -162,19 +162,19 @@ public class Bug {
 
 
 	
-	public List<Employee> getEmployees() {
+	public Set<Employee> getEmployees() {
 		return employees;
 	}
 
 
-	public void setEmployees(List<Employee> employees) {
+	public void setEmployees(Set<Employee> employees) {
 		this.employees = employees;
 	}
 	
 	// Add a convenience method
 		public void addEmployeeToBug(Employee employee) {
 			if (employees == null) {
-				employees = new ArrayList<>();
+				employees = new HashSet<>();
 			}
 			
 			employees.add(employee);
