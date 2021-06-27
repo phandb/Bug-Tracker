@@ -19,6 +19,33 @@
 		<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
 	</properties>
 	<dependencies>
+		<!-- Thymeleaf support -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+		
+		<!-- Optional, for bootstrap -->
+        
+       <!-- https://mvnrepository.com/artifact/org.webjars/bootstrap -->
+		<dependency>
+		    <groupId>org.webjars</groupId>
+		    <artifactId>bootstrap</artifactId>
+		    <version>5.0.1</version>
+		</dependency>
+
+		<dependency>
+		  <groupId>org.webjars</groupId>
+		  <artifactId>font-awesome</artifactId>
+		  <version>5.15.3</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.webjars</groupId>
+		    <artifactId>jquery</artifactId>
+		    <version>3.6.0</version>
+		</dependency>
+	
 		<!-- Hibernate ORM support -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -52,6 +79,8 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		
+		
 	</dependencies>
 
 	<build>

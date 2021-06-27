@@ -2,6 +2,7 @@ package com.javaprojects.bugtracker.controller;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,10 +39,20 @@ public class BugRestController {
 		this.bugService = bugService;
 	}
 	
+	
+	/****************************************************************/
 	// expose "/bugs" and return list of bugs
 	@GetMapping("/bugs")
-	public List<Bug> findAll() {
-		return bugService.findAll();
+	public String getBugs(Model theModel) {
+		
+		// get bugs from db
+		List<Bug> bugs = bugService.findAll();
+		
+		// Add bugs to spring model
+		theModel.addAttribute("bugs", bugs);
+		
+		// return to view
+		return "bugs";
 	}
 	
 	// add mapping for GET /bug/{bugId}
