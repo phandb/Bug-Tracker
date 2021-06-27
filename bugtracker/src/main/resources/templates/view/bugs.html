@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <meta charset="UTF-8" />
+      <title>Result</title>
+      <!-- 
+      <link th:rel="stylesheet"
+         th:href="@{/webjars/bootstrap-datepicker/5.0.1/css/bootstrap-datepicker.css}" />
+      <link th:rel="stylesheet"
+         th:href="@{/webjars/bootstrap-datepicker/5.0.1/css/bootstrap-datepicker.standalone.css}" />
+         
+         -->
+      <link th:rel="stylesheet"
+         th:href="@{/webjars/bootstrap/5.0.1/css/bootstrap.min.css}" />
+         
+      <script th:src="@{/webjars/bootstrap/5.0.1/js/bootstrap.min.js}"></script>
+      <script th:src="@{/webjars/jquery/3.6.0/jquery.min.js}"></script>
+      
+   </head>
+   <body>
+      <div  class="container">
+         <h1>Bug Tracking System</h1>
+         <table class="table table-striped">
+         	<thead>
+	         	<tr>
+	               
+	               <th scope="col">Type</th>
+	               <th scope="col">Issued Date</th>
+	               <th scope="col">Created By</th>
+	               <th scope="col">Status</th>
+	               <th scope="col">Description</th>
+	               <th scope="col">Tips</th>
+	               <th scope="col">Solved By</th>
+	            </tr>
+         	</thead>
+         	
+         	<tbody>
+         		<tr th:each="bug : ${bugs}">
+	               <td th:text="${bug.type}" ></td>
+	               <td th:text="${bug.issuedOn}" ></td>
+	               <td th:text="${bug.createdBy}" ></td>
+	               <td th:text="${bug.status}" ></td>
+	               <td th:text="${bug.description}" ></td>
+	               <td th:text="${bug.tips}" ></td>
+	               <td th:text="${bug.solvedBy}" ></td>
+	               
+	           	 </tr>
+         	</tbody>
+            
+            
+            
+         </table>
+      </div>
+      <div class="container">
+         <a th:href="@{/back}">Back</a>
+      </div>
+   </body>
+</html>
