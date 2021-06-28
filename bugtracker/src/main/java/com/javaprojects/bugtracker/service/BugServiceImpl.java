@@ -25,7 +25,7 @@ public class BugServiceImpl implements BugService {
 		
 
 	@Override
-	@Transactional
+	
 	public List<Bug> findAll() {
 		
 		return bugDAO.findAll();

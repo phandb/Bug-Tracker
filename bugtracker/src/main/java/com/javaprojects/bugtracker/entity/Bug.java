@@ -48,7 +48,7 @@ public class Bug {
 	private String solvedBy;
 	
 	// Configure Many to Many relationship with Employee class
-	@ManyToMany(fetch=FetchType.LAZY,
+	@ManyToMany(fetch=FetchType.EAGER,
 				    cascade= {CascadeType.PERSIST, CascadeType.MERGE,
 				    		  CascadeType.DETACH, CascadeType.REFRESH })
 	@JoinTable(
@@ -70,11 +70,10 @@ public class Bug {
 
 		this.type = type;
 		this.issuedOn = issuedOn;
-		this.createdBy = createdBy;
 		this.status = status;
 		this.description = description;
 		this.tips = tips;
-		this.solvedBy = solvedBy;
+		
 	}
 
 
@@ -141,25 +140,7 @@ public class Bug {
 	}
 
 
-	public String getCreatedBy() {
-		return createdBy;
-	}
-
-
-	public void setCreatedBy(String createdBy) {
-		this.createdBy = createdBy;
-	}
-
-
-	public String getSolvedBy() {
-		return solvedBy;
-	}
-
-
-	public void setSolvedBy(String solvedBy) {
-		this.solvedBy = solvedBy;
-	}
-
+	
 
 	
 	public Set<Employee> getEmployees() {
@@ -185,8 +166,8 @@ public class Bug {
 
 	@Override
 	public String toString() {
-		return "Bug [id=" + id + ", type=" + type + ", issuedOn=" + issuedOn + ", createdBy=" + createdBy + ", status="
-				+ status + ", description=" + description + ", tips=" + tips + ", solvedBy=" + solvedBy + "]";
+		return "Bug [id=" + id + ", type=" + type + ", issuedOn=" + issuedOn + ",  status="
+				+ status + ", description=" + description + ", tips=" + tips  + "]";
 	}
 	
 	

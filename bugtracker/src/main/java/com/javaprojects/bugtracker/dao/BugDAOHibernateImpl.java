@@ -9,8 +9,6 @@ import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.javaprojects.bugtracker.entity.Bug;
 
 @Repository
@@ -33,7 +31,7 @@ public class BugDAOHibernateImpl implements BugDAO {
 		Session currentSession = entityManager.unwrap(Session.class);
 		
 		// create a query using native Hibernate
-		Query<Bug> query = currentSession.createQuery("from Bug", Bug.class);
+		Query<Bug> query = currentSession.createQuery("from Bug ", Bug.class);
 		
 		// execute the query and get result list
 		List<Bug> bugs = query.getResultList();

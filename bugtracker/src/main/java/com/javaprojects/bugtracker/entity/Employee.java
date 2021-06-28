@@ -39,15 +39,14 @@ public class Employee {
 	@Column(name="role")
 	private String role;
 	
+	
+	
 	// Configure Many to Many relationship with Bug class
-	@ManyToMany(fetch=FetchType.LAZY,
+	@ManyToMany(mappedBy="employee",
+				fetch=FetchType.EAGER,
 			    cascade= {CascadeType.PERSIST, CascadeType.MERGE,
 			    		  CascadeType.DETACH, CascadeType.REFRESH })
-	@JoinTable(
-			name="bug_employee",
-			joinColumns=@JoinColumn(name="employee_id"),
-			inverseJoinColumns=@JoinColumn(name="bug_id")
-			)
+	
 	private Set<Bug> bugs = new HashSet<>();
 	
 	// Define constructor
