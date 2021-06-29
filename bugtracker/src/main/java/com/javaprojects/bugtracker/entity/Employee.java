@@ -42,11 +42,10 @@ public class Employee {
 	
 	
 	// Configure Many to Many relationship with Bug class
-	@ManyToMany(mappedBy="employee",
-				fetch=FetchType.EAGER,
+	@ManyToMany(mappedBy="employees",
+				fetch=FetchType.LAZY,
 			    cascade= {CascadeType.PERSIST, CascadeType.MERGE,
 			    		  CascadeType.DETACH, CascadeType.REFRESH })
-	
 	private Set<Bug> bugs = new HashSet<>();
 	
 	// Define constructor

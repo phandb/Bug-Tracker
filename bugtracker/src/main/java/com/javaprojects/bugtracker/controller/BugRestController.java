@@ -17,7 +17,7 @@ import com.javaprojects.bugtracker.entity.Bug;
 import com.javaprojects.bugtracker.service.BugService;
 import com.javaprojects.bugtracker.service.EmployeeService;
 
-@Controller
+@RestController
 @RequestMapping("/api")
 public class BugRestController {
 	
@@ -47,16 +47,10 @@ public class BugRestController {
 	/****************************************************************/
 	// expose "/bugs" and return list of bugs
 	@GetMapping("/bugs")
-	public String getBugs(Model theModel) {
+	public List<Bug> findAll() {
 		
-		// get bugs from db
-		List<Bug> bugs = bugService.findAll();
 		
-		// Add bugs to spring model
-		theModel.addAttribute("bugs", bugs);
-		
-		// return to view
-		return "view/bugs";
+		return bugService.findAll();
 	}
 	
 	// add mapping for GET /bug/{bugId}

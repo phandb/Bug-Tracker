@@ -32,8 +32,7 @@ public class Bug {
 	@Column(name="issued_on")
 	private Date issuedOn;
 	
-	@Column(name="created_by")
-	private String createdBy;
+
 	
 	@Column(name="status")
 	private String status;
@@ -44,11 +43,18 @@ public class Bug {
 	@Column(name="tips")
 	private String tips;
 	
+	@Column(name="created_by")
+	private String createdBy;
+	
 	@Column(name="solved_by")
 	private String solvedBy;
 	
+	// private Set<Employee> createdBy = new HashSet<>();
+	
+	// private Set<Employee> solvedBy = new HashSet<>();
+	
 	// Configure Many to Many relationship with Employee class
-	@ManyToMany(fetch=FetchType.EAGER,
+	@ManyToMany(fetch=FetchType.LAZY,
 				    cascade= {CascadeType.PERSIST, CascadeType.MERGE,
 				    		  CascadeType.DETACH, CascadeType.REFRESH })
 	@JoinTable(
@@ -56,7 +62,10 @@ public class Bug {
 				joinColumns=@JoinColumn(name="bug_id"),
 				inverseJoinColumns=@JoinColumn(name="employee_id")
 				)
-	private Set<Employee> employees = new HashSet<>();; 
+	private Set<Employee> employees = new HashSet<>();
+	
+	
+	
 	
 	// define constructors
 	// No-argument constructor required by Hibernate
@@ -65,8 +74,7 @@ public class Bug {
 	}
 
 
-	public Bug(String type, Date issuedOn, String createdBy, String status, String description, String tips,
-			String solvedBy) {
+	public Bug(String type, Date issuedOn,  String status, String description, String tips) {
 
 		this.type = type;
 		this.issuedOn = issuedOn;
@@ -138,11 +146,53 @@ public class Bug {
 	public void setTips(String tips) {
 		this.tips = tips;
 	}
-
-
+	
 	
 
+/*
 	
+	public Set<Employee> getCreatedBy() {
+		return createdBy;
+	}
+
+
+	public void setCreatedBy(Set<Employee> createdBy) {
+		this.createdBy = createdBy;
+	}
+
+
+	public Set<Employee> getSolvedBy() {
+		return solvedBy;
+	}
+
+
+	public void setSolvedBy(Set<Employee> solvedBy) {
+		this.solvedBy = solvedBy;
+	}
+	
+	*/
+
+
+	public String getCreatedBy() {
+		return createdBy;
+	}
+
+
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+
+
+	public String getSolvedBy() {
+		return solvedBy;
+	}
+
+
+	public void setSolvedBy(String solvedBy) {
+		this.solvedBy = solvedBy;
+	}
+
+
 	public Set<Employee> getEmployees() {
 		return employees;
 	}
@@ -151,15 +201,21 @@ public class Bug {
 	public void setEmployees(Set<Employee> employees) {
 		this.employees = employees;
 	}
+
+
 	
+
+
 	// Add a convenience method
-		public void addEmployeeToBug(Employee employee) {
+	public void addEmployeeToBug(Employee employee) {
 			if (employees == null) {
 				employees = new HashSet<>();
 			}
 			
 			employees.add(employee);
 		}
+	
+	
 
 		
 
