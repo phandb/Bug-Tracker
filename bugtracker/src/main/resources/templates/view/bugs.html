@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
    <head>
       <meta charset="UTF-8" />
-      <title>Result</title>
+      <title>Bug Tracker</title>
       <!-- 
       <link th:rel="stylesheet"
          th:href="@{/webjars/bootstrap-datepicker/5.0.1/css/bootstrap-datepicker.css}" />
@@ -17,9 +17,16 @@
       <script th:src="@{/webjars/jquery/3.6.0/jquery.min.js}"></script>
       
    </head>
+   
    <body>
       <div  class="container">
          <h1>Bug Tracking System</h1>
+         
+         <!--  Adding Button  -->
+         <a th:href="@{/bug-tracker/showFormForAdd}"
+         	class="btn btn-primary m-3"> Add New Bug</a>
+         	
+         	
          <table class="table table-striped">
          	<thead>
 	         	<tr>
@@ -51,8 +58,6 @@
             
          </table>
       </div>
-      <div class="container">
-         <a th:href="@{/back}">Back</a>
-      </div>
+      
    </body>
 </html>

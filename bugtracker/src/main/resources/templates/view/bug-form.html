@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <meta charset="UTF-8" />
+      <title>Save Bug</title>
+      <!-- 
+      <link th:rel="stylesheet"
+         th:href="@{/webjars/bootstrap-datepicker/5.0.1/css/bootstrap-datepicker.css}" />
+      <link th:rel="stylesheet"
+         th:href="@{/webjars/bootstrap-datepicker/5.0.1/css/bootstrap-datepicker.standalone.css}" />
+         
+         -->
+      <link th:rel="stylesheet"
+         th:href="@{/webjars/bootstrap/5.0.1/css/bootstrap.min.css}" />
+         
+      <script th:src="@{/webjars/bootstrap/5.0.1/js/bootstrap.min.js}"></script>
+      <script th:src="@{/webjars/jquery/3.6.0/jquery.min.js}"></script>
+      
+   </head>
+   
+   <body>
+   
+   	<div class="container">
+   		<h1>Bug Tracking System</h1>
+   		<p class="h4 m-4">Save Bug</p>
+   		
+   		<form action="#" th:action="@{/bug-tracker/save}"
+   						th:object="${bug}" method="POST">
+   			<input type="text" th:field= "*{type}"
+   					class="form-control mb-4 col-4" placeholder="Bug Type">
+   					
+   			<input type="text" th:field= "*{issuedOn}"
+   					class="form-control mb-4 col-4" placeholder="Issued Date">
+   					
+   			<input type="text" th:field= "*{status}"
+   					class="form-control mb-4 col-4" placeholder="Status">
+   					
+   			<input type="text" th:field= "*{description}"
+   					class="form-control mb-4 col-4" placeholder="Description">
+   					
+   			<input type="text" th:field= "*{tips}"
+   					class="form-control mb-4 col-4" placeholder="How to Solve">
+   					
+   			<input type="text" th:field= "*{createdBy}"
+   					class="form-control mb-4 col-4" placeholder="Initiated By">
+   					
+   			<input type="text" th:field= "*{solvedBy}"
+   					class="form-control mb-4 col-4" placeholder="Solved By">
+   			
+   			<button type="submit" class="btn btn-info col-2"> Save </button>		
+   		</form>
+   		
+   		<hr>
+   		<a th:href="@{/bug-tracker/bugs}">Back to Bugs List</a>
+   	</div>
+   	
+   </body>
