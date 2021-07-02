@@ -16,6 +16,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name="bug")
 public class Bug {
@@ -30,6 +32,7 @@ public class Bug {
 	private String type;
 	
 	@Column(name="issued_on")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date issuedOn;
 	
 

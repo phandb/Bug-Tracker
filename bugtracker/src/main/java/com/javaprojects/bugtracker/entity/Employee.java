@@ -17,6 +17,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name="employee")
 public class Employee {
@@ -39,6 +41,7 @@ public class Employee {
 	@Column(name="role")
 	private String role;
 	
+	//@DateTimeFormat(pattern = "MM-dd-yyyy")
 	
 	
 	// Configure Many to Many relationship with Bug class

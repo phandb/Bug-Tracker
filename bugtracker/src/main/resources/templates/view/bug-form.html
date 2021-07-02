@@ -26,11 +26,16 @@
    		
    		<form action="#" th:action="@{/bug-tracker/save}"
    						th:object="${bug}" method="POST">
+   						
+   			<!--  For updating, it isrequired to have a hidden field to hold 
+   			an id for updating.  Otherwise, which one need to be update? -->
+   			<input type="hidden" th:field="*{id}"/>
+   						
    			<input type="text" th:field= "*{type}"
    					class="form-control mb-4 col-4" placeholder="Bug Type">
    					
    			<input type="text" th:field= "*{issuedOn}"
-   					class="form-control mb-4 col-4" placeholder="Issued Date">
+   					class="form-control mb-4 col-4" placeholder="Issued Date (yyyy-MM-dd)">
    					
    			<input type="text" th:field= "*{status}"
    					class="form-control mb-4 col-4" placeholder="Status">

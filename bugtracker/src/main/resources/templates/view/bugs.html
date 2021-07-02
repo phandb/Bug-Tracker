@@ -38,11 +38,13 @@
 	               <th scope="col">Description</th>
 	               <th scope="col">Tips</th>
 	               <th scope="col">Solved By</th>
+	               <th scope="col">Action</th>
 	            </tr>
          	</thead>
          	
          	<tbody>
          		<tr th:each="bug : ${bugs}">
+         		
 	               <td th:text="${bug.type}" ></td>
 	               <td th:text="${bug.issuedOn}" ></td>
 	               <td th:text="${bug.createdBy}" ></td>
@@ -50,6 +52,13 @@
 	               <td th:text="${bug.description}" ></td>
 	               <td th:text="${bug.tips}" ></td>
 	               <td th:text="${bug.solvedBy}" ></td>
+	               <!-- Add Update Button/Link  -->
+	               <td>
+		               	<a th:href="@{/bug-tracker/showFormForUpdate(bugId=${bug.id} )}" 
+		               		class="btn btn-outline-info btn-sm">
+		               		Update
+		               	</a>
+	               	</td>
 	               
 	           	 </tr>
          	</tbody>

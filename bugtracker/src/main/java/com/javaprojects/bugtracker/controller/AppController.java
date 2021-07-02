@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.javaprojects.bugtracker.entity.Bug;
 import com.javaprojects.bugtracker.service.BugService;
@@ -35,7 +36,7 @@ public class AppController {
 		// Add the list to model
 		theModel.addAttribute("bugs", bugs);
 		
-		return "view/bugs.html";
+		return "view/bugs";
 	}
 	
 	// Add mapping for adding bug
@@ -52,6 +53,21 @@ public class AppController {
 		return "view/bug-form";  // this is location of html file
 	}
 	
+	// Get Update Form
+	@GetMapping("/showFormForUpdate")
+	public String showFormForUpdate(@RequestParam("bugId") int theId,
+			                         Model theModel){
+		// Get the bug from service
+		Bug theBug = bugService.findById(theId);
+		
+		// Set bug as a model attribute to pre-populate into the form
+		theModel.addAttribute("bug", theBug);
+		
+		//  Send over to the bug-form created in add section
+		return "view/bug-form";
+	}
+	
+	
 	// Processing to save bug
 	@PostMapping("/save")
 	public String saveBug(@ModelAttribute("bug") Bug theBug) {
@@ -62,9 +78,10 @@ public class AppController {
 		
 		
 		// use a redirect to prevent duplicate submission
-		return "redirect:/bug-tracker/bugs";
+		return "redirect:bugs";
 		
 	}
 	
+
 
 }
