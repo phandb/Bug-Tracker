@@ -36,7 +36,7 @@ public class AppController {
 		// Add the list to model
 		theModel.addAttribute("bugs", bugs);
 		
-		return "view/bugs";
+		return "view/bugs";  // view is sub-directory of templates
 	}
 	
 	// Add mapping for adding bug
@@ -51,6 +51,7 @@ public class AppController {
 		
 		// src/main/resources/templates/bug-tracker/bug-form.html
 		return "view/bug-form";  // this is location of html file
+		// view is sub-directory of templates
 	}
 	
 	// Get Update Form
@@ -64,7 +65,7 @@ public class AppController {
 		theModel.addAttribute("bug", theBug);
 		
 		//  Send over to the bug-form created in add section
-		return "view/bug-form";
+		return "view/bug-form"; // view is sub-directory of templates
 	}
 	
 	
@@ -78,6 +79,8 @@ public class AppController {
 		
 		
 		// use a redirect to prevent duplicate submission
+		// Go straight back to the main page: bug-tracker/bugs
+		// This is URL not a file
 		return "redirect:bugs";
 		
 	}

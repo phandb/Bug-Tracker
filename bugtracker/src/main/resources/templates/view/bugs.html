@@ -46,7 +46,7 @@
          		<tr th:each="bug : ${bugs}">
          		
 	               <td th:text="${bug.type}" ></td>
-	               <td th:text="${bug.issuedOn}" ></td>
+	               <td th:text="${#dates.format(bug.issuedOn, 'MM-dd-yyyy')}" ></td>
 	               <td th:text="${bug.createdBy}" ></td>
 	               <td th:text="${bug.status}" ></td>
 	               <td th:text="${bug.description}" ></td>
