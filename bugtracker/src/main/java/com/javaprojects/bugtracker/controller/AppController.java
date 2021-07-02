@@ -85,6 +85,14 @@ public class AppController {
 		
 	}
 	
-
+	// Delete bug
+	@GetMapping("/deleteBug")
+	public String deleteBug(@RequestParam("bugId") int theId) {
+		// Delete the bug
+		bugService.deleteById(theId);
+		
+		// Redirect back to /bug-tracker/bugs
+		return "redirect:bugs";
+	}
 
 }
