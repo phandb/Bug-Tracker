@@ -25,6 +25,12 @@ public class AppController {
 		this.bugService = bugService;
 	}
 	
+	//Redirect to index.html
+	@GetMapping("/")
+	public String getHomePage() {
+		return "index";
+	}
+	
 	/****************************************/
 	// Add mapping for get list of bugs
 	@GetMapping("/bugs")

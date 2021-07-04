@@ -1,34 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
-
-    <head th:insert="fragments/head :: header-files">
-        <!--  Insert head in fragments/head here -->
-      
-    </head>
-    
-    <!-- BODY  -->
-    <body class="sb-nav-fixed">
-    <!-- NAV BAR -->
-        <nav th:insert="fragments/nav-bar :: navbar" class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            <!-- Navbar inserted here-->
-            
-        </nav>
-        
-      <!--  SIDE BAR -->  
-        <div id="layoutSidenav">
-            <div id="layoutSidenav_nav" th:replace="fragments/side-bar :: sidebar">
-                
-                <!--  Side bar inserted here -->
-            </div>
-            
-      <!-- Staring main content -->      
-            <div id="layoutSidenav_content">
-            
-            <!--  We change main content in the main section -->
-                <main>
+<body>
+    <main th:fragment="main-body">
                     <div class="container-fluid px-4">
-                        <!--  <h1 class="mt-4">Bug Tracker Management</h1> -->
+                        <h1 class="mt-4">Bug Tracker Management</h1>
                         
 
                         <div class="card mb-4">
@@ -93,18 +68,5 @@
                         </div>
                     </div>
                 </main>
- 
- 
- <!--  FOOTER  -->               
-                <footer th:insert="fragments/footer :: footer" class="py-4 bg-light mt-auto">
-                    <!--  Insert footer here -->
-                </footer>
-                
-      <!--  END of FOOTER -->
-            </div>
-        </div>
-      <!--  END of SIDE BAR -->
-      
-      
-    </body>
+</body>
 </html>

@@ -1,62 +1,94 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-   <head>
-      <meta charset="UTF-8" />
-      <title>Save Bug</title>
-      <!-- 
-      <link th:rel="stylesheet"
-         th:href="@{/webjars/bootstrap-datepicker/5.0.1/css/bootstrap-datepicker.css}" />
-      <link th:rel="stylesheet"
-         th:href="@{/webjars/bootstrap-datepicker/5.0.1/css/bootstrap-datepicker.standalone.css}" />
-         
-         -->
-      <link th:rel="stylesheet"
-         th:href="@{/webjars/bootstrap/5.0.1/css/bootstrap.min.css}" />
-         
-      <script th:src="@{/webjars/bootstrap/5.0.1/js/bootstrap.min.js}"></script>
-      <script th:src="@{/webjars/jquery/3.6.0/jquery.min.js}"></script>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+
+    <head th:insert="fragments/head :: header-files">
+        <!--  Insert head in fragments/head here -->
       
-   </head>
-   
-   <body>
-   
-   	<div class="container">
-   		<h1>Bug Tracking System</h1>
-   		<p class="h4 m-4">Save Bug</p>
-   		
-   		<form action="#" th:action="@{/bug-tracker/save}"
-   						th:object="${bug}" method="POST">
-   						
-   			<!--  For updating, it isrequired to have a hidden field to hold 
-   			an id for updating.  Otherwise, which one need to be update? -->
-   			<input type="hidden" th:field="*{id}"/>
-   						
-   			<input type="text" th:field= "*{type}"
-   					class="form-control mb-4 col-4" placeholder="Bug Type">
-   					
-   			<input type="text" th:field= "*{issuedOn}"
-   					class="form-control mb-4 col-4" placeholder="Issued Date (yyyy-MM-dd)">
-   					
-   			<input type="text" th:field= "*{status}"
-   					class="form-control mb-4 col-4" placeholder="Status">
-   					
-   			<input type="text" th:field= "*{description}"
-   					class="form-control mb-4 col-4" placeholder="Description">
-   					
-   			<input type="text" th:field= "*{tips}"
-   					class="form-control mb-4 col-4" placeholder="How to Solve">
-   					
-   			<input type="text" th:field= "*{createdBy}"
-   					class="form-control mb-4 col-4" placeholder="Initiated By">
-   					
-   			<input type="text" th:field= "*{solvedBy}"
-   					class="form-control mb-4 col-4" placeholder="Solved By">
-   			
-   			<button type="submit" class="btn btn-info col-2"> Save </button>		
-   		</form>
-   		
-   		<hr>
-   		<a th:href="@{/bug-tracker/bugs}">Back to Bugs List</a>
-   	</div>
-   	
-   </body>
+    </head>
+    
+    <!-- BODY  -->
+    <body class="sb-nav-fixed">
+    <!-- NAV BAR -->
+        <nav th:insert="fragments/nav-bar :: navbar" class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+            <!-- Navbar inserted here-->
+            
+        </nav>
+        
+      <!--  SIDE BAR -->  
+        <div id="layoutSidenav">
+            <div id="layoutSidenav_nav" th:replace="fragments/side-bar :: sidebar">
+                
+                <!--  Side bar inserted here -->
+            </div>
+            
+      <!-- Staring main content -->      
+            <div id="layoutSidenav_content">
+            
+            <!--  We change main content in the main section -->
+                <main>
+                    <div class="container-fluid px-4">
+                        <!--  <h1 class="mt-4">Bug Tracker Management</h1> -->
+                        
+
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                 Save Bug
+                            </div>
+                            <div class="card-body align-self-center" style="width: 60%;">
+						            		
+						   								   		
+						   		<form action="#" th:action="@{/bug-tracker/save}"
+						   						th:object="${bug}" method="POST">
+						   						
+						   			<!--  For updating, it isrequired to have a hidden field to hold 
+						   			an id for updating.  Otherwise, which one need to be update? -->
+						   			<input type="hidden" th:field="*{id}"/>
+						   						
+						   			<input type="text" th:field= "*{type}"
+						   					class="form-control mb-4 col-4" placeholder="Bug Type">
+						   					
+						   			<input type="text" th:field= "*{issuedOn}"
+						   					class="form-control mb-4 col-4" placeholder="Issued Date (yyyy-MM-dd)">
+						   					
+						   			<input type="text" th:field= "*{status}"
+						   					class="form-control mb-4 col-4" placeholder="Status">
+						   					
+						   			<input type="text" th:field= "*{description}"
+						   					class="form-control mb-4 col-4" placeholder="Description">
+						   					
+						   			<input type="text" th:field= "*{tips}"
+						   					class="form-control mb-4 col-4" placeholder="How to Solve">
+						   					
+						   			<input type="text" th:field= "*{createdBy}"
+						   					class="form-control mb-4 col-4" placeholder="Initiated By">
+						   					
+						   			<input type="text" th:field= "*{solvedBy}"
+						   					class="form-control mb-4 col-4" placeholder="Solved By">
+						   			
+						   			<button type="submit" class="btn btn-info col-2"> Save </button>		
+						   		</form>
+						   		
+						   		<hr>
+						   		<a th:href="@{/bug-tracker/bugs}">Back to Bugs List</a>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+ 
+ 
+ <!--  FOOTER  -->               
+                <footer th:insert="fragments/footer :: footer" class="py-4 bg-light mt-auto">
+                    <!--  Insert footer here -->
+                </footer>
+                
+      <!--  END of FOOTER -->
+            </div>
+        </div>
+      <!--  END of SIDE BAR -->
+      
+      
+    </body>
+</html>
+
