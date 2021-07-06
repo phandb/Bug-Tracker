@@ -25,7 +25,7 @@
       <!-- Staring main content -->      
             <div id="layoutSidenav_content">
             
-            <!--  We change main content in the main section -->
+            <!--  THE MAIN SECTION BELOW NEED TO BE CHANGED-->
                 <main>
                     <div class="container-fluid px-4">
                         <!--  <h1 class="mt-4">Bug Tracker Management</h1> -->
@@ -34,44 +34,36 @@
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
-                                 Save Bug
+                                 Save Employee
                             </div>
                             <div class="card-body align-self-center" style="width: 60%;">
 						            		
 						   								   		
-						   		<form action="#" th:action="@{/bug-tracker/save-bug}"
-						   						th:object="${bug}" method="POST">
+						   		<form action="#" th:action="@{/bug-tracker/save-employee}"
+						   						th:object="${employee}" method="POST">
 						   						
 						   			<!--  For updating, it isrequired to have a hidden field to hold 
 						   			an id for updating.  Otherwise, which one need to be update? -->
 						   			<input type="hidden" th:field="*{id}"/>
 						   						
-						   			<input type="text" th:field= "*{type}"
-						   					class="form-control mb-4 col-4" placeholder="Bug Type">
+						   			<input type="text" th:field= "*{firstName}"
+						   					class="form-control mb-4 col-4" placeholder="First Name">
 						   					
-						   			<input type="text" th:field= "*{issuedOn}"
-						   					class="form-control mb-4 col-4" placeholder="Issued Date (yyyy-MM-dd)">
+						   			<input type="text" th:field= "*{lastName}"
+						   					class="form-control mb-4 col-4" placeholder="last Name">
 						   					
-						   			<input type="text" th:field= "*{status}"
-						   					class="form-control mb-4 col-4" placeholder="Status">
+						   			<input type="text" th:field= "*{position}"
+						   					class="form-control mb-4 col-4" placeholder="Position">
 						   					
-						   			<input type="text" th:field= "*{description}"
-						   					class="form-control mb-4 col-4" placeholder="Description">
+						   			<input type="text" th:field= "*{role}"
+						   					class="form-control mb-4 col-4" placeholder="Role">
 						   					
-						   			<input type="text" th:field= "*{tips}"
-						   					class="form-control mb-4 col-4" placeholder="How to Solve">
-						   					
-						   			<input type="text" th:field= "*{createdBy}"
-						   					class="form-control mb-4 col-4" placeholder="Initiated By">
-						   					
-						   			<input type="text" th:field= "*{solvedBy}"
-						   					class="form-control mb-4 col-4" placeholder="Solved By">
-						   			
+						   									   			
 						   			<button type="submit" class="btn btn-info col-2"> Save </button>		
 						   		</form>
 						   		
 						   		<hr>
-						   		<a th:href="@{/bug-tracker/bugs}">Back to Bugs List</a>
+						   		<a th:href="@{/bug-tracker/employees}">Back to Employee List</a>
                             </div>
                         </div>
                     </div>

@@ -34,50 +34,45 @@
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
-                                 Bug List
+                                 Employee List
                             </div>
                             <div class="card-body">
 						         <!--  Adding Button  -->
-						         <a th:href="@{/bug-tracker/bug-adding-form}"
-						         	class="btn btn-outline-primary m-3"> Add New Bug</a>
+						         <a th:href="@{/bug-tracker/employee-adding-form}"
+						         	class="btn btn-outline-primary m-3"> Add New Employee </a>
 						         	
 						         	
 						         <table class="table table-striped">
 						         	<thead>
 							         	<tr>
 							               
-							               <th scope="col">Type</th>
-							               <th scope="col">Issued Date</th>
-							               <th scope="col">Created By</th>
-							               <th scope="col">Status</th>
-							               <th scope="col">Description</th>
-							               <th scope="col">Tips</th>
-							               <th scope="col">Solved By</th>
+							               <th scope="col">First Name</th>
+							               <th scope="col">Last Name</th>
+							               <th scope="col">Position</th>
+							               <th scope="col">Role</th>
 							               <th scope="col">Action</th>
 							            </tr>
 						         	</thead>
 						         	
 						         	<tbody>
-						         		<tr th:each="bug : ${bugs}">
+						         		<!-- model attribute: employees -->
+						         		<tr th:each="employee : ${employees}">
 						         		
-							               <td th:text="${bug.type}" ></td>
-							               <td th:text="${#dates.format(bug.issuedOn, 'MM-dd-yyyy')}" ></td>
-							               <td th:text="${bug.createdBy}" ></td>
-							               <td th:text="${bug.status}" ></td>
-							               <td th:text="${bug.description}" ></td>
-							               <td th:text="${bug.tips}" ></td>
-							               <td th:text="${bug.solvedBy}" ></td>
-							              
+							               <td th:text="${employee.firstName}" ></td>
+							               <td th:text="${employee.lastName}" ></td>
+							               <td th:text="${employee.position}" ></td>
+							               <td th:text="${employee.role}" ></td>
+							               							              
 							               <td>
 							               	 <!-- Add Update Button/Link  -->
-								               	<a th:href="@{/bug-tracker/bug-updating-form(bugId=${bug.id} )}" 
+								               	<a th:href="@{/bug-tracker/employee-updating-form(employeeId=${employee.id} )}" 
 								               		class="btn btn-outline-info btn-sm">
 								               		Update
 								               	</a>
 								               	 <!-- Add Delete Button/Link  -->
-								               	<a th:href="@{/bug-tracker/delete-bug(bugId=${bug.id} )}" 
+								               	<a th:href="@{/bug-tracker/delete-employee(employeeId=${employee.id} )}" 
 								               		class="btn btn-outline-danger btn-sm"
-								               		onclick="if (!(confirm('Are you sure to delete this bug?'))) return false">
+								               		onclick="if (!(confirm('Are you sure to delete this employee?'))) return false">
 								               		Delete
 								               	</a>
 								               	

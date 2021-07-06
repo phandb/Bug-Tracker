@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.javaprojects.bugtracker.entity.Bug;
+import com.javaprojects.bugtracker.entity.Employee;
 import com.javaprojects.bugtracker.service.BugService;
+import com.javaprojects.bugtracker.service.EmployeeService;
 
 
 @Controller
@@ -20,9 +22,12 @@ public class AppController {
 	
 	private BugService bugService;
 	
-	public AppController(BugService bugService) {
+	private EmployeeService employeeService;
+	
+	public AppController(BugService bugService, EmployeeService employeeService) {
 		
 		this.bugService = bugService;
+		this.employeeService = employeeService;
 	}
 	
 	//Redirect to index.html
@@ -31,10 +36,10 @@ public class AppController {
 		return "index";
 	}
 	
-	/****************************************/
+	/**************BUg CRUD**************************/
 	// Add mapping for get list of bugs
 	@GetMapping("/bugs")
-	public String getListBug(Model theModel) {
+	public String getBugs(Model theModel) {
 		
 		// Get list of bugs from db
 		List<Bug> bugs = bugService.findAll();
@@ -46,8 +51,8 @@ public class AppController {
 	}
 	
 	// Add mapping for adding bug
-	@GetMapping("/showFormForAdd")  //  This appears in URL
-	public String showFormForAdd(Model theModel) {
+	@GetMapping("/bug-adding-form")  //  This appears in URL
+	public String getBugAddingForm(Model theModel) {
 		
 		// create model attribute to bind form data
 		Bug theBug = new Bug();
@@ -61,13 +66,13 @@ public class AppController {
 	}
 	
 	// Get Update Form
-	@GetMapping("/showFormForUpdate")
-	public String showFormForUpdate(@RequestParam("bugId") int theId,
+	@GetMapping("/bug-updating-form")
+	public String getBugUpdatingForm(@RequestParam("bugId") int theId,
 			                         Model theModel){
 		// Get the bug from service
 		Bug theBug = bugService.findById(theId);
 		
-		// Set bug as a model attribute to pre-populate into the form
+		// Set the bug to a model attribute to pre-populate into the form
 		theModel.addAttribute("bug", theBug);
 		
 		//  Send over to the bug-form created in add section
@@ -76,7 +81,7 @@ public class AppController {
 	
 	
 	// Processing to save bug
-	@PostMapping("/save")
+	@PostMapping("/save-bug")
 	public String saveBug(@ModelAttribute("bug") Bug theBug) {
 		// data binding "bug" passed from bug-form
 		
@@ -92,7 +97,7 @@ public class AppController {
 	}
 	
 	// Delete bug
-	@GetMapping("/deleteBug")
+	@GetMapping("/delete-bug")
 	public String deleteBug(@RequestParam("bugId") int theId) {
 		// Delete the bug
 		bugService.deleteById(theId);
@@ -100,5 +105,69 @@ public class AppController {
 		// Redirect back to /bug-tracker/bugs
 		return "redirect:bugs";
 	}
-
+	
+	/*********************Employee CRUD**********************************/
+	// Get list of employee
+	@GetMapping("/employees")
+	public String getEmployees(Model theModel) {
+		
+		// Get list of employees from service
+		List<Employee> employees = employeeService.findAll();
+		
+		//Add the list of employee to model attribute
+		theModel.addAttribute("employees", employees);
+		
+		return "view/admin/employees.html";
+		
+	}
+	
+	// Adding employee form
+	@GetMapping("/employee-adding-form")
+	public String getEmployeeAddingForm(Model theModel) {
+		// Create a model attribute to bind form data
+		Employee employee = new Employee();
+		
+		//Access data for binding from employee attribute
+		theModel.addAttribute("employee", employee);
+		
+		//
+		return "view/admin/employee-form";
+		
+	}
+	
+	// Get update employee form
+	@GetMapping("/employee-updating-form")
+	public String getEmployeeUpdatingForm(@RequestParam("employeeId") int theId, Model theModel) {
+		// Get the employee from service
+		Employee employee = employeeService.findById(theId);
+		
+		// Set the employee as a model attribute and populate it to a form
+		theModel.addAttribute("employee", employee);
+		
+		//  Send over to the employee created in adding section
+		return "view/admin/employee-form"; // view/admin is sub-directory of templates
+	}
+	
+	// Processing save employee
+	@PostMapping("/save-employee")
+	public String saveEmployee(@ModelAttribute("employee") Employee employee) {
+		// "employee" data binding from the employee form
+		
+		//save employee info
+		employeeService.save(employee);
+		
+		// Use redirect to prevent duplicate submission
+		//go to URL bug-tracker/employees
+		return "redirect:employees";
+	}
+	
+	// Delete employee
+	@GetMapping("/delete-employee")
+	public String deleteEmployee(@RequestParam("employeeId") int theId) {
+		// Delete the employee
+		employeeService.deleteById(theId);
+		
+		//redirect back to /bug-tracker/employees
+		return "redirect:employees";
+	}
 }
