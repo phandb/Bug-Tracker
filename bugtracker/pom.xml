@@ -73,9 +73,14 @@
 		
 		<!-- MySQL JDBC Driver -->
 		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<scope>runtime</scope>
+		  <groupId>mysql</groupId>
+		  <artifactId>mysql-connector-java</artifactId>
+		</dependency>
+		
+		<dependency>
+		  <groupId>com.mchange</groupId>
+		  <artifactId>c3p0</artifactId>
+		  <version>0.9.5.5</version>
 		</dependency>
 		
 		<!-- Unit Testing -->
@@ -85,18 +90,30 @@
 			<scope>test</scope>
 		</dependency>
 		
-		<!-- Spring Security 
+		<!-- Spring Security -->
 		<dependency>
 			  <groupId>org.springframework.boot</groupId>
 			  <artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.thymeleaf.extras</groupId>
+			<artifactId>thymeleaf-extras-springsecurity5</artifactId>
+		</dependency>
+		
 		<dependency>
 			  <groupId>org.springframework.security</groupId>
 			  <artifactId>spring-security-test</artifactId>
 			  <scope>test</scope>
 		</dependency>
-		
-		-->
+
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
+		</dependency>
+
 	</dependencies>
 
 	<build>
