@@ -81,7 +81,7 @@ public class AppController {
 	
 	
 	// Processing to save bug
-	@PostMapping("/save-bug")
+	@PostMapping("/bug-save")
 	public String saveBug(@ModelAttribute("bug") Bug theBug) {
 		// data binding "bug" passed from bug-form
 		
@@ -97,7 +97,7 @@ public class AppController {
 	}
 	
 	// Delete bug
-	@GetMapping("/delete-bug")
+	@GetMapping("/bug-delete")
 	public String deleteBug(@RequestParam("bugId") int theId) {
 		// Delete the bug
 		bugService.deleteById(theId);
@@ -149,7 +149,7 @@ public class AppController {
 	}
 	
 	// Processing save employee
-	@PostMapping("/save-employee")
+	@PostMapping("/employee-save")
 	public String saveEmployee(@ModelAttribute("employee") Employee employee) {
 		// "employee" data binding from the employee form
 		
@@ -162,7 +162,7 @@ public class AppController {
 	}
 	
 	// Delete employee
-	@GetMapping("/delete-employee")
+	@GetMapping("/employee-delete")
 	public String deleteEmployee(@RequestParam("employeeId") int theId) {
 		// Delete the employee
 		employeeService.deleteById(theId);
