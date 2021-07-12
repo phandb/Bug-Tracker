@@ -2,6 +2,7 @@ package com.javaprojects.bugtracker.entity;
 
 
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -38,9 +39,7 @@ public class Employee {
 	@Column(name="position")
 	private String position;
 	
-	@Column(name="role")
-	private String role;
-	
+		
 	@Column(name="username")
 	private String username;
 	
@@ -61,22 +60,43 @@ public class Employee {
 			    		  CascadeType.DETACH, CascadeType.REFRESH })
 	private Set<Bug> bugs = new HashSet<>();
 	
+	// Configure many to many with role
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name = "employees_roles", 
+	joinColumns = @JoinColumn(name = "employee_id"), 
+	inverseJoinColumns = @JoinColumn(name = "role_id"))
+	private Collection<Role> roles;
+	
 	// Define constructor
 	
 	public Employee() {
 		
 	}
 
-	public Employee(String firstName, String lastName, String position, String role) {
+	public Employee(String firstName, String lastName, String position, String username, String password,
+			Collection<Role> roles) {
+		
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.position = position;
+		this.username = username;
+		this.password = password;
+		this.roles = roles;
+	}
+
+	public Employee(String firstName, String lastName, String position, String username, String password) {
 	
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.position = position;
-		this.role = role;
+		this.username = username;
+		this.password = password;
 	}
+
 	
 	// Getter Setter
 		
+
 	public int getId() {
 		return id;
 	}
@@ -109,13 +129,6 @@ public class Employee {
 		this.position = position;
 	}
 
-	public String getRole() {
-		return role;
-	}
-
-	public void setRole(String role) {
-		this.role = role;
-	}
 	
 	public String getUsername() {
 		return username;
@@ -159,7 +172,7 @@ public class Employee {
 	@Override
 	public String toString() {
 		return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", position=" + position
-				+ ", role=" + role + "]";
+				+ ", username=" + username + ", password=" + password + ", roles=" + roles + "]";
 	}
 	
 	
