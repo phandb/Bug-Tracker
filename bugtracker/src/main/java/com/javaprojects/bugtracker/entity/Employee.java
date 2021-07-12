@@ -41,9 +41,19 @@ public class Employee {
 	@Column(name="role")
 	private String role;
 	
+	@Column(name="username")
+	private String username;
+	
+	
+	@Column(name="password")
+	private String password;
+	
+	
 	//@DateTimeFormat(pattern = "MM-dd-yyyy")
 	
 	
+	
+
 	// Configure Many to Many relationship with Bug class
 	@ManyToMany(mappedBy="employees",
 				fetch=FetchType.LAZY,
@@ -106,6 +116,23 @@ public class Employee {
 	public void setRole(String role) {
 		this.role = role;
 	}
+	
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	
 	
 	public Set<Bug> getBugs() {

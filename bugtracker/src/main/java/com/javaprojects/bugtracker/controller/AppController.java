@@ -33,7 +33,7 @@ public class AppController {
 	//Redirect to index.html
 	@GetMapping("/")
 	public String getHomePage() {
-		return "index";
+		return "login";
 	}
 	
 	/**************BUg CRUD**************************/

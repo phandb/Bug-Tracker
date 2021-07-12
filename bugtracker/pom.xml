@@ -21,11 +21,7 @@
 	
 	<!--  Dependencies -->
 	<dependencies>
-		<!-- Thymeleaf support -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-thymeleaf</artifactId>
-		</dependency>
+		
 		
 		<!-- Optional, for bootstrap -->
         
@@ -54,9 +50,23 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
+		
+		<!-- Hibernate Validator -->
+		<dependency>
+		    <groupId>org.hibernate</groupId>
+		    <artifactId>hibernate-validator</artifactId>
+		    <version>6.0.7.Final</version>
+		</dependency>
 		<!-- 
 		
 	-->
+	
+	<!-- Thymeleaf support -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+		
 		<!-- MVC and REST support -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -75,6 +85,7 @@
 		<dependency>
 		  <groupId>mysql</groupId>
 		  <artifactId>mysql-connector-java</artifactId>
+		  
 		</dependency>
 		
 		<dependency>
