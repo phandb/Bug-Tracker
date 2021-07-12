@@ -14,5 +14,9 @@ public interface EmployeeDAO {
 	public void save(Employee employee);
 	
 	public void deleteById(int id);
+	
+	Employee findByUserName(String userName);
+	
+	
 
 }

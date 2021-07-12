@@ -79,4 +79,25 @@ public class EmployeeDAOHibernateImpl implements EmployeeDAO {
 		
 	}
 
+	@Override
+	public Employee findByUserName(String theUserName) {
+		// get the current hibernate session
+		Session currentSession = entityManager.unwrap(Session.class);
+		
+		// Now retrieve/and read from database using username
+		Query<Employee> query = currentSession.createQuery(
+				"from Employee where userName=:username", Employee.class);
+		query.setParameter("username", theUserName);
+		
+		Employee employee = null;
+		try {
+			employee = query.getSingleResult();
+			
+		} catch (Exception e) {
+			employee = null;
+		}
+				
+		return employee;
+	}
+
 }

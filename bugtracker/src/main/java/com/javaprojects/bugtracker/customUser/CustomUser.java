@@ -3,13 +3,15 @@ package com.javaprojects.bugtracker.customUser;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.javaprojects.bugtracker.validation.FieldMatch;
+
 
 @FieldMatch.List({
 	@FieldMatch(first = "password",
 				second = "matchingPassword",
 				message ="The password fields must match")
 })
-public class UserDetails {
+public class CustomUser {
 	
 
 	@NotNull(message = "is required")
@@ -37,7 +39,7 @@ public class UserDetails {
 	private String position;
 	
 	// constructor
-	public UserDetails() {
+	public CustomUser() {
 		
 	}
 	
