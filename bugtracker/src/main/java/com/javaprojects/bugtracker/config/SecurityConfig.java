@@ -26,6 +26,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private EmployeeService userService;
 	
+	@Autowired
+	private CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
+	
+	
 	
 	@Autowired
 	@Qualifier("securityDataSource") 
@@ -47,6 +51,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		
 		http.authorizeRequests()
+			.antMatchers("/").hasRole("DEVELOPER")
 			.antMatchers("/bug-tracker/bug*").hasAnyRole("DEVELOPER", "ADMIN")
 			.antMatchers("/bug-tracker/employees*").hasRole( "ADMIN")
 			.antMatchers("/resources/**").permitAll()
@@ -54,6 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.formLogin()
 				.loginPage("/login-page")
 				.loginProcessingUrl("/authenticateTheUser")
+				.successHandler(customAuthenticationSuccessHandler)
 				.permitAll()
 			.and()
 			.logout().permitAll()
@@ -73,7 +79,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
 		auth.setUserDetailsService(userService);  // set the custom user detail service
-		auth.setPasswordEncoder(passwordEncoder());
+		auth.setPasswordEncoder(passwordEncoder());  //set the password encoder - bcrypt
 		
 		return auth;
 	}
