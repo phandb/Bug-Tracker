@@ -156,6 +156,14 @@ public class Employee {
 		this.bugs = bugs;
 	}
 
+	public Collection<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Collection<Role> roles) {
+		this.roles = roles;
+	}
+
 	// Add a convenience method
 	public void addBugToEmployee(Bug bug) {
 		if (bugs == null) {

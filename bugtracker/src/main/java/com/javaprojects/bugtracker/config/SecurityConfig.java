@@ -13,7 +13,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import com.javaprojects.bugtracker.service.UserService;
+import com.javaprojects.bugtracker.service.EmployeeService;
+
 
 
 @Configuration
@@ -23,7 +24,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	// add a reference to our security data source
 	
 	@Autowired
-	private UserService userService;
+	private EmployeeService userService;
 	
 	
 	@Autowired
