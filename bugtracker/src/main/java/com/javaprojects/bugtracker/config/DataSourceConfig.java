@@ -1,3 +1,5 @@
+
+/*
 package com.javaprojects.bugtracker.config;
 
 import javax.sql.DataSource;
@@ -36,3 +38,4 @@ public class DataSourceConfig {
 		return DataSourceBuilder.create().build();
 	}
 }
+*/

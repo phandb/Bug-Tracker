@@ -41,7 +41,7 @@ public class Employee {
 	
 		
 	@Column(name="username")
-	private String username;
+	private String userName;
 	
 	
 	@Column(name="password")
@@ -73,23 +73,23 @@ public class Employee {
 		
 	}
 
-	public Employee(String firstName, String lastName, String position, String username, String password,
+	public Employee(String firstName, String lastName, String position, String userName, String password,
 			Collection<Role> roles) {
 		
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.position = position;
-		this.username = username;
+		this.userName = userName;
 		this.password = password;
 		this.roles = roles;
 	}
 
-	public Employee(String firstName, String lastName, String position, String username, String password) {
+	public Employee(String firstName, String lastName, String position, String userName, String password) {
 	
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.position = position;
-		this.username = username;
+		this.userName = userName;
 		this.password = password;
 	}
 
@@ -130,12 +130,12 @@ public class Employee {
 	}
 
 	
-	public String getUsername() {
-		return username;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public String getPassword() {
@@ -180,7 +180,7 @@ public class Employee {
 	@Override
 	public String toString() {
 		return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", position=" + position
-				+ ", username=" + username + ", password=" + password + ", roles=" + roles + "]";
+				+ ", username=" + userName + ", password=" + password + ", roles=" + roles + "]";
 	}
 	
 	

@@ -54,7 +54,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 			throw new UsernameNotFoundException("Invalid username or password");
 			
 		}
-		return new org.springframework.security.core.userdetails.User(employee.getUsername(), employee.getPassword(),
+		return new org.springframework.security.core.userdetails.User(employee.getUserName(), employee.getPassword(),
 					mapRolesToAuthorities(employee.getRoles())) ;
 	}
 
@@ -80,7 +80,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		Employee employee = new Employee();
 		
 		// Assign employee details to the employee object
-		employee.setUsername(customUser.getUserName());
+		employee.setUserName(customUser.getUserName());
 		employee.setPassword(passwordEncoder.encode(customUser.getPassword()));
 		employee.setFirstName(customUser.getFirstName());
 		employee.setLastName(customUser.getLastName());

@@ -33,8 +33,9 @@ public class AppController {
 	//Redirect to index.html
 	@GetMapping("/")
 	public String getHomePage() {
-		return "login";
+		return "view/bugs";
 	}
+	
 	
 	/**************BUg CRUD**************************/
 	// Add mapping for get list of bugs

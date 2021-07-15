@@ -20,6 +20,6 @@ public interface EmployeeService extends UserDetailsService {
 	
 	public Employee findByUserName(String userName);
 	
-	void saveCustomUser(CustomUser customUser);
+	public void saveCustomUser(CustomUser customUser);
 
 }

@@ -15,7 +15,7 @@ public interface EmployeeDAO {
 	
 	public void deleteById(int id);
 	
-	Employee findByUserName(String userName);
+	public Employee findByUserName(String userName);
 	
 	
 

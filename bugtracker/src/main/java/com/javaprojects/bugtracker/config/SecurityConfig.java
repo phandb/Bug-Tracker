@@ -30,12 +30,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	private CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
 	
 	
-	
+	/*
 	@Autowired
 	@Qualifier("securityDataSource") 
 	private DataSource securityDataSource;
 	
-	
+	*/
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -51,13 +51,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		
 		http.authorizeRequests()
-			.antMatchers("/").hasRole("DEVELOPER")
-			.antMatchers("/bug-tracker/bug*").hasAnyRole("DEVELOPER", "ADMIN")
-			.antMatchers("/bug-tracker/employees*").hasRole( "ADMIN")
-			.antMatchers("/resources/**").permitAll()
+			//.antMatchers("/").hasRole("DEVELOPER")
+			.antMatchers("/bug-tracker/bugs").hasAnyRole("DEVELOPER", "ADMIN")
+			.antMatchers("/bug-tracker/bug-**").hasRole("DEVELOPER")
+			.antMatchers("/bug-tracker/employee**").hasRole( "ADMIN")
 			.and()
 			.formLogin()
-				.loginPage("/login-page")
+				.loginPage("/bug-tracker/login-page")
 				.loginProcessingUrl("/authenticateTheUser")
 				.successHandler(customAuthenticationSuccessHandler)
 				.permitAll()
