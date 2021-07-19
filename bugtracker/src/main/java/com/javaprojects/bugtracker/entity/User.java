@@ -21,13 +21,13 @@ import javax.persistence.Table;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name="employee")
-public class Employee {
+@Table(name="user")
+public class User {
 	
 	// Define field
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="employee_id")
+	@Column(name="user_id")
 	private int id;
 	
 	@Column(name="first_name")	
@@ -62,18 +62,18 @@ public class Employee {
 	
 	// Configure many to many with role
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinTable(name = "employees_roles", 
-	joinColumns = @JoinColumn(name = "employee_id"), 
+	@JoinTable(name = "users_roles", 
+	joinColumns = @JoinColumn(name = "user_id"), 
 	inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Collection<Role> roles;
 	
 	// Define constructor
 	
-	public Employee() {
+	public User() {
 		
 	}
 
-	public Employee(String firstName, String lastName, String position, String userName, String password,
+	public User(String firstName, String lastName, String position, String userName, String password,
 			Collection<Role> roles) {
 		
 		this.firstName = firstName;
@@ -84,7 +84,7 @@ public class Employee {
 		this.roles = roles;
 	}
 
-	public Employee(String firstName, String lastName, String position, String userName, String password) {
+	public User(String firstName, String lastName, String position, String userName, String password) {
 	
 		this.firstName = firstName;
 		this.lastName = lastName;

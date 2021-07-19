@@ -15,16 +15,16 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.javaprojects.bugtracker.customUser.CustomUser;
-import com.javaprojects.bugtracker.dao.EmployeeDAO;
+import com.javaprojects.bugtracker.dao.UserDao;
 import com.javaprojects.bugtracker.dao.RoleDao;
-import com.javaprojects.bugtracker.entity.Employee;
+import com.javaprojects.bugtracker.entity.User;
 import com.javaprojects.bugtracker.entity.Role;
 
 @Service
-public class EmployeeServiceImpl implements EmployeeService {
+public class UserServiceImpl implements UserService {
 	
 	@Autowired
-	private EmployeeDAO employeeDAO;
+	private UserDao employeeDAO;
 	
 	@Autowired
 	private RoleDao roleDao;
@@ -35,7 +35,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	//--------------  Constructor -----------------
 	
 	@Autowired
-	public EmployeeServiceImpl(EmployeeDAO employeeDAO,
+	public UserServiceImpl(UserDao employeeDAO,
 								RoleDao roleDao	) {
 		
 		this.employeeDAO = employeeDAO;
@@ -47,7 +47,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Transactional
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		//Find the employee
-		Employee employee = employeeDAO.findByUserName(username);
+		User employee = employeeDAO.findByUserName(username);
 		
 		// Check valid employee
 		if (employee == null) {
@@ -65,7 +65,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	@Transactional
-	public Employee findByUserName(String userName) {
+	public User findByUserName(String userName) {
 		// check the database if the employee already exist
 		
 		return employeeDAO.findByUserName(userName);
@@ -77,7 +77,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Transactional
 	public void saveCustomUser(CustomUser customUser) {
 		
-		Employee employee = new Employee();
+		User employee = new User();
 		
 		// Assign employee details to the employee object
 		employee.setUserName(customUser.getUserName());
@@ -98,7 +98,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	
 	@Override
 	@Transactional
-	public List<Employee> findAll() {
+	public List<User> findAll() {
 		
 		return employeeDAO.findAll();
 	}
@@ -107,7 +107,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	@Transactional
-	public Employee findById(int id) {
+	public User findById(int id) {
 		// Delegate to DAO
 		return employeeDAO.findById(id);
 	}
@@ -115,7 +115,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	// might not need this method
 	@Override
 	@Transactional
-	public void save(Employee employee) {
+	public void save(User employee) {
 		// Delegate to DAO
 		employeeDAO.save(employee);
 		

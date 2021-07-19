@@ -1,9 +1,6 @@
 package com.javaprojects.bugtracker.config;
 
-import javax.sql.DataSource;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -13,7 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import com.javaprojects.bugtracker.service.EmployeeService;
+import com.javaprojects.bugtracker.service.UserService;
 
 
 
@@ -24,25 +21,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	// add a reference to our security data source
 	
 	@Autowired
-	private EmployeeService userService;
+	private UserService userService;
 	
 	@Autowired
 	private CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
 	
-	
-	/*
-	@Autowired
-	@Qualifier("securityDataSource") 
-	private DataSource securityDataSource;
-	
-	*/
-	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		
-		// use jdbc uthenication ---
-		//auth.jdbcAuthentication().dataSource(securityDataSource);
-		
+				
 		// use custom authentication
 		auth.authenticationProvider(authenticationProvider());
 	}
@@ -51,10 +37,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		
 		http.authorizeRequests()
-			//.antMatchers("/").hasRole("DEVELOPER")
-			.antMatchers("/bug-tracker/bugs").hasAnyRole("DEVELOPER", "ADMIN")
-			.antMatchers("/bug-tracker/bug-**").hasRole("DEVELOPER")
-			.antMatchers("/bug-tracker/employee**").hasRole( "ADMIN")
+			.anyRequest().authenticated()
+			//.antMatchers("/bug-tracker/").hasRole("DEVELOPER")
+			//.antMatchers("/bug-tracker/bugs**").hasAnyRole("DEVELOPER", "ADMIN")
+			//.antMatchers("/bug-tracker/bug-**").hasRole("DEVELOPER")
+			//.antMatchers("/bug-tracker/employee**").hasRole( "ADMIN")
+				
 			.and()
 			.formLogin()
 				.loginPage("/bug-tracker/login-page")

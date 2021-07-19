@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.javaprojects.bugtracker.entity.Bug;
-import com.javaprojects.bugtracker.entity.Employee;
+import com.javaprojects.bugtracker.entity.User;
 import com.javaprojects.bugtracker.service.BugService;
-import com.javaprojects.bugtracker.service.EmployeeService;
+import com.javaprojects.bugtracker.service.UserService;
 
 
 @Controller
@@ -22,9 +22,9 @@ public class AppController {
 	
 	private BugService bugService;
 	
-	private EmployeeService employeeService;
+	private UserService employeeService;
 	
-	public AppController(BugService bugService, EmployeeService employeeService) {
+	public AppController(BugService bugService, UserService employeeService) {
 		
 		this.bugService = bugService;
 		this.employeeService = employeeService;
@@ -113,7 +113,7 @@ public class AppController {
 	public String getEmployees(Model theModel) {
 		
 		// Get list of employees from service
-		List<Employee> employees = employeeService.findAll();
+		List<User> employees = employeeService.findAll();
 		
 		//Add the list of employee to model attribute
 		theModel.addAttribute("employees", employees);
@@ -126,7 +126,7 @@ public class AppController {
 	@GetMapping("/employee-adding-form")
 	public String getEmployeeAddingForm(Model theModel) {
 		// Create a model attribute to bind form data
-		Employee employee = new Employee();
+		User employee = new User();
 		
 		//Access data for binding from employee attribute
 		theModel.addAttribute("employee", employee);
@@ -140,7 +140,7 @@ public class AppController {
 	@GetMapping("/employee-updating-form")
 	public String getEmployeeUpdatingForm(@RequestParam("employeeId") int theId, Model theModel) {
 		// Get the employee from service
-		Employee employee = employeeService.findById(theId);
+		User employee = employeeService.findById(theId);
 		
 		// Set the employee as a model attribute and populate it to a form
 		theModel.addAttribute("employee", employee);
@@ -151,7 +151,7 @@ public class AppController {
 	
 	// Processing save employee
 	@PostMapping("/employee-save")
-	public String saveEmployee(@ModelAttribute("employee") Employee employee) {
+	public String saveEmployee(@ModelAttribute("employee") User employee) {
 		// "employee" data binding from the employee form
 		
 		//save employee info

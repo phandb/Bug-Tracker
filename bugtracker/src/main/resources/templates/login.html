@@ -1,8 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+
      <head th:insert="fragments/head :: header-files">
         <!--  Insert head in fragments/head here -->
-      
+        
+             
     </head>
     
     
@@ -47,13 +50,13 @@
                                             
                                             <!-- Usrname -->
                                             <div class="form-floating mb-3">
-                                                <input class="form-control" id="inputUsername" type="text" placeholder="username" />
+                                                <input class="form-control" id="inputUsername" type="text" name="username" placeholder="username" />
                                                 <label for="inputUsername">Username</label>
                                             </div>
                                             
                                             <!-- Password -->
                                             <div class="form-floating mb-3">
-                                                <input class="form-control" id="inputPassword" type="password" placeholder="password" />
+                                                <input class="form-control" id="inputPassword" type="password" name="password" placeholder="password" />
                                                 <label for="inputPassword">password</label>
                                             </div>
                                             

@@ -12,15 +12,15 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
-import com.javaprojects.bugtracker.entity.Employee;
-import com.javaprojects.bugtracker.service.EmployeeService;
+import com.javaprojects.bugtracker.entity.User;
+import com.javaprojects.bugtracker.service.UserService;
 
 
 @Component
 public class CustomAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 	
 	@Autowired
-	private EmployeeService employeeService;
+	private UserService employeeService;
 	
 
 	@Override
@@ -33,14 +33,14 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 		
 		System.out.println("userName: " + userName);
 		
-		Employee theUser = employeeService.findByUserName(userName);
+		User theUser = employeeService.findByUserName(userName);
 		
 		// Place the login employee in the session
 		HttpSession session = request.getSession();
 		session.setAttribute("user", theUser);
 		
 		// forward to home page
-		response.sendRedirect(request.getContextPath() + "/bugs");
+		response.sendRedirect(request.getContextPath() + "/");
 
 	}
 

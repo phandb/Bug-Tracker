@@ -12,17 +12,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.javaprojects.bugtracker.entity.Employee;
-import com.javaprojects.bugtracker.service.EmployeeService;
+import com.javaprojects.bugtracker.entity.User;
+import com.javaprojects.bugtracker.service.UserService;
 
 @RestController
 @RequestMapping("/api")
 public class EmployeeRestController {
 	
-	private EmployeeService employeeService;
+	private UserService employeeService;
 	
 	@Autowired
-	public EmployeeRestController(EmployeeService employeeService) {
+	public EmployeeRestController(UserService employeeService) {
 		
 		this.employeeService = employeeService;
 	}
@@ -31,14 +31,14 @@ public class EmployeeRestController {
 	
 	// expose /employees and return list of employees
 	@GetMapping("/employees")
-	public List<Employee> findAll() {
+	public List<User> findAll() {
 		return employeeService.findAll();
 	}
 	
 	// add mapping for /employees/{employeeId}
 	@GetMapping("/employees/{employeeId}")
-	public Employee getEmployee(@PathVariable int employeeId) {
-		Employee employee = employeeService.findById(employeeId);
+	public User getEmployee(@PathVariable int employeeId) {
+		User employee = employeeService.findById(employeeId);
 		if (employee == null) {
 			throw new RuntimeException("Employee id not found - " + employeeId);
 		}
@@ -47,7 +47,7 @@ public class EmployeeRestController {
 	
 	// Map for adding new employee
 	@PostMapping("/employees")
-	public Employee addEmployee(@RequestBody Employee employee) {
+	public User addEmployee(@RequestBody User employee) {
 		employee.setId(0);
 		employeeService.save(employee);
 		return employee;
@@ -55,7 +55,7 @@ public class EmployeeRestController {
 	
 	//  Map for updating employee info
 	@PutMapping("/employees")
-	public Employee updateEmployee(@RequestBody  Employee employee) {
+	public User updateEmployee(@RequestBody  User employee) {
 		
 		employeeService.save(employee);
 		
@@ -65,7 +65,7 @@ public class EmployeeRestController {
 	// Map for deleting employee
 	@DeleteMapping("/employees/{employeeId}")
 	public String deleteEmployee(@PathVariable int employeeId) {
-		Employee tempEmployee = employeeService.findById(employeeId);
+		User tempEmployee = employeeService.findById(employeeId);
 		if (tempEmployee == null) {
 			throw new RuntimeException("Employee id not found - " + employeeId);
 			

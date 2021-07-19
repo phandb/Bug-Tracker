@@ -9,51 +9,51 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.javaprojects.bugtracker.entity.Employee;
+import com.javaprojects.bugtracker.entity.User;
 
 @Repository
-public class EmployeeDAOHibernateImpl implements EmployeeDAO {
+public class UserDaoImpl implements UserDao {
 	
 	
 
 	private EntityManager entityManager;
 	
 	@Autowired
-	public EmployeeDAOHibernateImpl(EntityManager entityManager) {
+	public UserDaoImpl(EntityManager entityManager) {
 	
 		this.entityManager = entityManager;
 	}
 
 	@Override
-	public List<Employee> findAll() {
+	public List<User> findAll() {
 		
 		// gwt the current hibernate session
 		Session currentSession = entityManager.unwrap(Session.class);
 		
 		// Create a query using native Hibernate
-		Query<Employee> query = currentSession.createQuery("from Employee", Employee.class);
+		Query<User> query = currentSession.createQuery("from Employee", User.class);
 		
 		// Execute the query and get result list
-		List<Employee> employees = query.getResultList();
+		List<User> employees = query.getResultList();
 		
 		// Return the results
 		return employees;
 	}
 
 	@Override
-	public Employee findById(int id) {
+	public User findById(int id) {
 		// get the current hibernate session
 		Session currentSession = entityManager.unwrap(Session.class);
 		
 		// get the employee
-		Employee employee = currentSession.get(Employee.class, id);
+		User employee = currentSession.get(User.class, id);
 		
 		//return the employee
 		return employee;
 	}
 
 	@Override
-	public void save(Employee employee) {
+	public void save(User employee) {
 		// get the current hibernate session
 		Session currentSession = entityManager.unwrap(Session.class);
 				
@@ -80,16 +80,16 @@ public class EmployeeDAOHibernateImpl implements EmployeeDAO {
 	}
 
 	@Override
-	public Employee findByUserName(String theUserName) {
+	public User findByUserName(String theUserName) {
 		// get the current hibernate session
 		Session currentSession = entityManager.unwrap(Session.class);
 		
 		// Now retrieve/and read from database using username
-		Query<Employee> query = currentSession.createQuery(
-				"from Employee where userName=:username", Employee.class);
+		Query<User> query = currentSession.createQuery(
+				"from Employee where userName=:username", User.class);
 		query.setParameter("username", theUserName);
 		
-		Employee employee = null;
+		User employee = null;
 		try {
 			employee = query.getSingleResult();
 			

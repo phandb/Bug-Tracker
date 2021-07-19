@@ -65,7 +65,7 @@ public class Bug {
 				joinColumns=@JoinColumn(name="bug_id"),
 				inverseJoinColumns=@JoinColumn(name="employee_id")
 				)
-	private Set<Employee> employees = new HashSet<>();
+	private Set<User> employees = new HashSet<>();
 	
 	
 	
@@ -196,12 +196,12 @@ public class Bug {
 	}
 
 
-	public Set<Employee> getEmployees() {
+	public Set<User> getEmployees() {
 		return employees;
 	}
 
 
-	public void setEmployees(Set<Employee> employees) {
+	public void setEmployees(Set<User> employees) {
 		this.employees = employees;
 	}
 
@@ -210,7 +210,7 @@ public class Bug {
 
 
 	// Add a convenience method
-	public void addEmployeeToBug(Employee employee) {
+	public void addEmployeeToBug(User employee) {
 			if (employees == null) {
 				employees = new HashSet<>();
 			}

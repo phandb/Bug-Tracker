@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.javaprojects.bugtracker.entity.Bug;
 import com.javaprojects.bugtracker.service.BugService;
-import com.javaprojects.bugtracker.service.EmployeeService;
+import com.javaprojects.bugtracker.service.UserService;
 
 @RestController
 @RequestMapping("/api")
@@ -25,7 +25,7 @@ public class BugRestController {
 
 	//private BugDAO bugDAO;
 	private BugService bugService;
-	private EmployeeService employeeService;
+	private UserService employeeService;
 	
 	// inject bug dao without using a service layer
 	/*

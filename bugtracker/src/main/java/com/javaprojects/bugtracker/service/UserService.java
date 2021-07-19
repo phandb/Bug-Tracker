@@ -6,19 +6,19 @@ import java.util.Set;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 import com.javaprojects.bugtracker.customUser.CustomUser;
-import com.javaprojects.bugtracker.entity.Employee;
+import com.javaprojects.bugtracker.entity.User;
 
-public interface EmployeeService extends UserDetailsService {
+public interface UserService extends UserDetailsService {
 	
-	public List<Employee> findAll();
+	public List<User> findAll();
 	
-	public Employee findById(int id);
+	public User findById(int id);
 	
-	public void save(Employee employee);
+	public void save(User employee);
 	
 	public void deleteById(int id);
 	
-	public Employee findByUserName(String userName);
+	public User findByUserName(String userName);
 	
 	public void saveCustomUser(CustomUser customUser);
 
