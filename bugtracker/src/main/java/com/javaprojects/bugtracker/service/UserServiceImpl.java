@@ -24,7 +24,7 @@ import com.javaprojects.bugtracker.entity.Role;
 public class UserServiceImpl implements UserService {
 	
 	@Autowired
-	private UserDao employeeDAO;
+	private UserDao userDao;
 	
 	@Autowired
 	private RoleDao roleDao;
@@ -35,10 +35,10 @@ public class UserServiceImpl implements UserService {
 	//--------------  Constructor -----------------
 	
 	@Autowired
-	public UserServiceImpl(UserDao employeeDAO,
+	public UserServiceImpl(UserDao userDao,
 								RoleDao roleDao	) {
 		
-		this.employeeDAO = employeeDAO;
+		this.userDao = userDao;
 		this.roleDao = roleDao;
 	}
 
@@ -46,16 +46,16 @@ public class UserServiceImpl implements UserService {
 	@Override
 	@Transactional
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		//Find the employee
-		User employee = employeeDAO.findByUserName(username);
+		//Find the user
+		User user = userDao.findByUserName(username);
 		
-		// Check valid employee
-		if (employee == null) {
+		// Check valid user
+		if (user == null) {
 			throw new UsernameNotFoundException("Invalid username or password");
 			
 		}
-		return new org.springframework.security.core.userdetails.User(employee.getUserName(), employee.getPassword(),
-					mapRolesToAuthorities(employee.getRoles())) ;
+		return new org.springframework.security.core.userdetails.User(user.getUserName(), user.getPassword(),
+					mapRolesToAuthorities(user.getRoles())) ;
 	}
 
 	private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles) {
@@ -66,31 +66,31 @@ public class UserServiceImpl implements UserService {
 	@Override
 	@Transactional
 	public User findByUserName(String userName) {
-		// check the database if the employee already exist
+		// check the database if the user already exist
 		
-		return employeeDAO.findByUserName(userName);
+		return userDao.findByUserName(userName);
 	}
 	
-	// Save new employee via registration
+	// Save new user via registration
 
 	@Override
 	@Transactional
 	public void saveCustomUser(CustomUser customUser) {
 		
-		User employee = new User();
+		User user = new User();
 		
-		// Assign employee details to the employee object
-		employee.setUserName(customUser.getUserName());
-		employee.setPassword(passwordEncoder.encode(customUser.getPassword()));
-		employee.setFirstName(customUser.getFirstName());
-		employee.setLastName(customUser.getLastName());
-		employee.setPosition(customUser.getPosition());
+		// Assign user details to the user object
+		user.setUserName(customUser.getUserName());
+		user.setPassword(passwordEncoder.encode(customUser.getPassword()));
+		user.setFirstName(customUser.getFirstName());
+		user.setLastName(customUser.getLastName());
+		user.setPosition(customUser.getPosition());
 		
 		// Assign default role of DEVELOPER
-		employee.setRoles(Arrays.asList(roleDao.findRoleByName("ROLE_DEVELOPER")));
+		user.setRoles(Arrays.asList(roleDao.findRoleByName("ROLE_DEVELOPER")));
 		
-		// Save the employee in the database
-		employeeDAO.save(employee);
+		// Save the user in the database
+		userDao.save(user);
 		
 	}
 
@@ -100,7 +100,7 @@ public class UserServiceImpl implements UserService {
 	@Transactional
 	public List<User> findAll() {
 		
-		return employeeDAO.findAll();
+		return userDao.findAll();
 	}
 
 
@@ -109,15 +109,15 @@ public class UserServiceImpl implements UserService {
 	@Transactional
 	public User findById(int id) {
 		// Delegate to DAO
-		return employeeDAO.findById(id);
+		return userDao.findById(id);
 	}
 
 	// might not need this method
 	@Override
 	@Transactional
-	public void save(User employee) {
+	public void save(User user) {
 		// Delegate to DAO
-		employeeDAO.save(employee);
+		userDao.save(user);
 		
 	}
 
@@ -125,7 +125,7 @@ public class UserServiceImpl implements UserService {
 	@Transactional
 	public void deleteById(int id) {
 		// Delegate to DAO
-		employeeDAO.deleteById(id);
+		userDao.deleteById(id);
 		
 	}
 
