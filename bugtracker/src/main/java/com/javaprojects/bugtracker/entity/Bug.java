@@ -61,11 +61,11 @@ public class Bug {
 				    cascade= {CascadeType.PERSIST, CascadeType.MERGE,
 				    		  CascadeType.DETACH, CascadeType.REFRESH })
 	@JoinTable(
-				name="bug_employee",
+				name="bugs_users",
 				joinColumns=@JoinColumn(name="bug_id"),
-				inverseJoinColumns=@JoinColumn(name="employee_id")
+				inverseJoinColumns=@JoinColumn(name="user_id")
 				)
-	private Set<User> employees = new HashSet<>();
+	private Set<User> users = new HashSet<>();
 	
 	
 	
@@ -196,26 +196,29 @@ public class Bug {
 	}
 
 
-	public Set<User> getEmployees() {
-		return employees;
-	}
-
-
-	public void setEmployees(Set<User> employees) {
-		this.employees = employees;
-	}
+	
 
 
 	
 
 
+	public Set<User> getUsers() {
+		return users;
+	}
+
+
+	public void setUsers(Set<User> users) {
+		this.users = users;
+	}
+
+
 	// Add a convenience method
-	public void addEmployeeToBug(User employee) {
-			if (employees == null) {
-				employees = new HashSet<>();
+	public void addEmployeeToBug(User user) {
+			if (users == null) {
+				users = new HashSet<>();
 			}
 			
-			employees.add(employee);
+			users.add(user);
 		}
 	
 	

@@ -37,8 +37,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		
 		http.authorizeRequests()
-			.anyRequest().authenticated()
-			//.antMatchers("/bug-tracker/").hasRole("DEVELOPER")
+			
+			.antMatchers("/bug-tracker/").hasRole("DEVELOPER")
 			//.antMatchers("/bug-tracker/bugs**").hasAnyRole("DEVELOPER", "ADMIN")
 			//.antMatchers("/bug-tracker/bug-**").hasRole("DEVELOPER")
 			//.antMatchers("/bug-tracker/employee**").hasRole( "ADMIN")

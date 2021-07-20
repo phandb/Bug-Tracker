@@ -25,7 +25,7 @@ public class BugRestController {
 
 	//private BugDAO bugDAO;
 	private BugService bugService;
-	private UserService employeeService;
+	private UserService userService;
 	
 	// inject bug dao without using a service layer
 	/*
@@ -37,10 +37,10 @@ public class BugRestController {
 	*/
 	
 	@Autowired
-	public BugRestController(BugService bugService) {
+	public BugRestController(BugService bugService, UserService userService) {
 		
 		this.bugService = bugService;
-		this.employeeService = employeeService;
+		this.userService = userService;
 	}
 	
 	

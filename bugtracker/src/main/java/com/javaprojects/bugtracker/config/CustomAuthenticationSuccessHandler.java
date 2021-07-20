@@ -20,7 +20,7 @@ import com.javaprojects.bugtracker.service.UserService;
 public class CustomAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 	
 	@Autowired
-	private UserService employeeService;
+	private UserService userService;
 	
 
 	@Override
@@ -33,7 +33,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 		
 		System.out.println("userName: " + userName);
 		
-		User theUser = employeeService.findByUserName(userName);
+		User theUser = userService.findByUserName(userName);
 		
 		// Place the login employee in the session
 		HttpSession session = request.getSession();

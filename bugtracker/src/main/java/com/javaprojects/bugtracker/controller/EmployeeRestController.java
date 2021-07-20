@@ -19,59 +19,59 @@ import com.javaprojects.bugtracker.service.UserService;
 @RequestMapping("/api")
 public class EmployeeRestController {
 	
-	private UserService employeeService;
+	private UserService userService;
 	
 	@Autowired
-	public EmployeeRestController(UserService employeeService) {
+	public EmployeeRestController(UserService userService) {
 		
-		this.employeeService = employeeService;
+		this.userService = userService;
 	}
 	
 	/*************************************************************/
 	
 	// expose /employees and return list of employees
-	@GetMapping("/employees")
+	@GetMapping("/users")
 	public List<User> findAll() {
-		return employeeService.findAll();
+		return userService.findAll();
 	}
 	
 	// add mapping for /employees/{employeeId}
-	@GetMapping("/employees/{employeeId}")
-	public User getEmployee(@PathVariable int employeeId) {
-		User employee = employeeService.findById(employeeId);
-		if (employee == null) {
-			throw new RuntimeException("Employee id not found - " + employeeId);
+	@GetMapping("/users/{userId}")
+	public User getUser(@PathVariable int userId) {
+		User user = userService.findById(userId);
+		if (user == null) {
+			throw new RuntimeException("Employee id not found - " + userId);
 		}
-		return employee;
+		return user;
 	}
 	
 	// Map for adding new employee
-	@PostMapping("/employees")
-	public User addEmployee(@RequestBody User employee) {
-		employee.setId(0);
-		employeeService.save(employee);
-		return employee;
+	@PostMapping("/user")
+	public User addUser(@RequestBody User user) {
+		user.setId(0);
+		userService.save(user);
+		return user;
 	}
 	
 	//  Map for updating employee info
-	@PutMapping("/employees")
-	public User updateEmployee(@RequestBody  User employee) {
+	@PutMapping("/users")
+	public User updateUser(@RequestBody  User user) {
 		
-		employeeService.save(employee);
+		userService.save(user);
 		
-		return employee;
+		return user;
 	}
 	
 	// Map for deleting employee
-	@DeleteMapping("/employees/{employeeId}")
-	public String deleteEmployee(@PathVariable int employeeId) {
-		User tempEmployee = employeeService.findById(employeeId);
-		if (tempEmployee == null) {
-			throw new RuntimeException("Employee id not found - " + employeeId);
+	@DeleteMapping("/users/{userId}")
+	public String deleteUser(@PathVariable int userId) {
+		User tempUser = userService.findById(userId);
+		if (tempUser == null) {
+			throw new RuntimeException("Employee id not found - " + userId);
 			
 		}
-		employeeService.deleteById(employeeId);
-		return "Delete employee id - " + employeeId;
+		userService.deleteById(userId);
+		return "Delete employee id - " + userId;
 		
 	}
 	

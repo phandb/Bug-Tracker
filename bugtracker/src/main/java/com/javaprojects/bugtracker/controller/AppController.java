@@ -22,12 +22,12 @@ public class AppController {
 	
 	private BugService bugService;
 	
-	private UserService employeeService;
+	private UserService userService;
 	
-	public AppController(BugService bugService, UserService employeeService) {
+	public AppController(BugService bugService, UserService userService) {
 		
 		this.bugService = bugService;
-		this.employeeService = employeeService;
+		this.userService = userService;
 	}
 	
 	//Redirect to index.html
@@ -107,68 +107,69 @@ public class AppController {
 		return "redirect:bugs";
 	}
 	
-	/*********************Employee CRUD**********************************/
-	// Get list of employee
-	@GetMapping("/employees")
-	public String getEmployees(Model theModel) {
+	/*********************User CRUD**********************************/
+	// Get list of user
+	@GetMapping("/users")
+	public String getUsers(Model theModel) {
 		
-		// Get list of employees from service
-		List<User> employees = employeeService.findAll();
+		// Get list of users from service
+		List<User> users = userService.findAll();
 		
-		//Add the list of employee to model attribute
-		theModel.addAttribute("employees", employees);
+		//Add the list of user to model attribute employee
+		theModel.addAttribute("employees", users);
 		
-		return "view/admin/employees.html";
+		// return the list to users html
+		return "view/admin/users.html";
 		
 	}
 	
 	// Adding employee form
-	@GetMapping("/employee-adding-form")
-	public String getEmployeeAddingForm(Model theModel) {
+	@GetMapping("/user-adding-form")
+	public String getUserAddingForm(Model theModel) {
 		// Create a model attribute to bind form data
-		User employee = new User();
+		User user = new User();
 		
 		//Access data for binding from employee attribute
-		theModel.addAttribute("employee", employee);
+		theModel.addAttribute("employee", user);
 		
 		//
-		return "view/admin/employee-form";
+		return "view/admin/user-form";
 		
 	}
 	
 	// Get update employee form
-	@GetMapping("/employee-updating-form")
-	public String getEmployeeUpdatingForm(@RequestParam("employeeId") int theId, Model theModel) {
+	@GetMapping("/user-updating-form")
+	public String getUserUpdatingForm(@RequestParam("userId") int theId, Model theModel) {
 		// Get the employee from service
-		User employee = employeeService.findById(theId);
+		User user = userService.findById(theId);
 		
 		// Set the employee as a model attribute and populate it to a form
-		theModel.addAttribute("employee", employee);
+		theModel.addAttribute("employee", user);
 		
 		//  Send over to the employee created in adding section
-		return "view/admin/employee-form"; // view/admin is sub-directory of templates
+		return "view/admin/user-form"; // view/admin is sub-directory of templates
 	}
 	
-	// Processing save employee
-	@PostMapping("/employee-save")
-	public String saveEmployee(@ModelAttribute("employee") User employee) {
+	// Processing save user
+	@PostMapping("/user-save")
+	public String saveUser(@ModelAttribute("employee") User user) {
 		// "employee" data binding from the employee form
 		
 		//save employee info
-		employeeService.save(employee);
+		userService.save(user);
 		
 		// Use redirect to prevent duplicate submission
 		//go to URL bug-tracker/employees
-		return "redirect:employees";
+		return "redirect:users";
 	}
 	
-	// Delete employee
-	@GetMapping("/employee-delete")
-	public String deleteEmployee(@RequestParam("employeeId") int theId) {
+	// Delete user
+	@GetMapping("/user-delete")
+	public String deleteUser(@RequestParam("userId") int theId) {
 		// Delete the employee
-		employeeService.deleteById(theId);
+		userService.deleteById(theId);
 		
-		//redirect back to /bug-tracker/employees
-		return "redirect:employees";
+		//redirect back to /bug-tracker/users
+		return "redirect:users";
 	}
 }

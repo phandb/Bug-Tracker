@@ -41,18 +41,18 @@ public class RegistrationController {
 	@GetMapping("/showRegistrationForm")
 	public String showMyLoginPage(Model theModel) {
 		
-		theModel.addAttribute("crmUser", new CustomUser());
+		theModel.addAttribute("customUser", new CustomUser());
 		
 		return "registration-form";
 	}
 
 	@PostMapping("/processRegistrationForm")
 	public String processRegistrationForm(
-				@Valid @ModelAttribute("crmUser") CustomUser theCrmUser, 
+				@Valid @ModelAttribute("customUser") CustomUser theCustomUser, 
 				BindingResult theBindingResult, 
 				Model theModel) {
 		
-		String userName = theCrmUser.getUserName();
+		String userName = theCustomUser.getUserName();
 		logger.info("Processing registration form for: " + userName);
 		
 		// form validation
@@ -63,7 +63,7 @@ public class RegistrationController {
 		// check the database if user already exists
         User existing = userService.findByUserName(userName);
         if (existing != null){
-        	theModel.addAttribute("crmUser", new CustomUser());
+        	theModel.addAttribute("customUser", new CustomUser());
 			theModel.addAttribute("registrationError", "User name already exists.");
 
 			logger.warning("User name already exists.");
@@ -71,7 +71,7 @@ public class RegistrationController {
         }
         
         // create user account        						
-        userService.saveCustomUser(theCrmUser);
+        userService.saveCustomUser(theCustomUser);
         
         logger.info("Successfully created user: " + userName);
         

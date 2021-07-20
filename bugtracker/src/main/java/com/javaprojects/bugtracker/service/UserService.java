@@ -14,7 +14,7 @@ public interface UserService extends UserDetailsService {
 	
 	public User findById(int id);
 	
-	public void save(User employee);
+	public void save(User user);
 	
 	public void deleteById(int id);
 	

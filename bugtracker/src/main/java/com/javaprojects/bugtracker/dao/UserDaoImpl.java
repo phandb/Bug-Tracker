@@ -31,13 +31,13 @@ public class UserDaoImpl implements UserDao {
 		Session currentSession = entityManager.unwrap(Session.class);
 		
 		// Create a query using native Hibernate
-		Query<User> query = currentSession.createQuery("from Employee", User.class);
+		Query<User> query = currentSession.createQuery("from User", User.class);
 		
 		// Execute the query and get result list
-		List<User> employees = query.getResultList();
+		List<User> users = query.getResultList();
 		
 		// Return the results
-		return employees;
+		return users;
 	}
 
 	@Override
@@ -46,21 +46,21 @@ public class UserDaoImpl implements UserDao {
 		Session currentSession = entityManager.unwrap(Session.class);
 		
 		// get the employee
-		User employee = currentSession.get(User.class, id);
+		User user = currentSession.get(User.class, id);
 		
 		//return the employee
-		return employee;
+		return user;
 	}
 
 	@Override
-	public void save(User employee) {
+	public void save(User user) {
 		// get the current hibernate session
 		Session currentSession = entityManager.unwrap(Session.class);
 				
 		// save the bug.  
 		// method saveOrUpdate() means
 		// if id=0 then save/insert;  otherwise update
-		currentSession.saveOrUpdate(employee);
+		currentSession.saveOrUpdate(user);
 		
 	}
 
@@ -71,9 +71,9 @@ public class UserDaoImpl implements UserDao {
 		
 		// delete the employee with primary key
 		Query query = currentSession.createQuery(
-				"delete from Employee where id=:employeeId");
+				"delete from User where id=:userId");
 		
-		query.setParameter("employeeId", id);
+		query.setParameter("userId", id);
 		
 		query.executeUpdate();
 		
@@ -86,18 +86,18 @@ public class UserDaoImpl implements UserDao {
 		
 		// Now retrieve/and read from database using username
 		Query<User> query = currentSession.createQuery(
-				"from Employee where userName=:username", User.class);
+				"from User where userName=:username", User.class);
 		query.setParameter("username", theUserName);
 		
-		User employee = null;
+		User user = null;
 		try {
-			employee = query.getSingleResult();
+			user = query.getSingleResult();
 			
 		} catch (Exception e) {
-			employee = null;
+			user = null;
 		}
 				
-		return employee;
+		return user;
 	}
 
 }

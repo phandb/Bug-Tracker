@@ -54,7 +54,7 @@ public class User {
 	
 
 	// Configure Many to Many relationship with Bug class
-	@ManyToMany(mappedBy="employees",
+	@ManyToMany(mappedBy="users",
 				fetch=FetchType.LAZY,
 			    cascade= {CascadeType.PERSIST, CascadeType.MERGE,
 			    		  CascadeType.DETACH, CascadeType.REFRESH })
@@ -173,15 +173,17 @@ public class User {
 		bugs.add(bug);
 	}
 
-	
 	// toString
-
-
 	@Override
 	public String toString() {
-		return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", position=" + position
-				+ ", username=" + userName + ", password=" + password + ", roles=" + roles + "]";
+		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", position=" + position
+				+ ", userName=" + userName + ", password=" + password + ", bugs=" + bugs + ", roles=" + roles + "]";
 	}
+
+	
+	
+
+
 	
 	
 	
