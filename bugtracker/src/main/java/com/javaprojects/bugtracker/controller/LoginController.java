@@ -18,7 +18,7 @@ public class LoginController {
 	@GetMapping("/register")
 	public String getRegisterPage() {
 		
-		return "register";
+		return "registration-form";
 	}
 	
 	// add request mapping for /access-denied

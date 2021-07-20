@@ -16,7 +16,7 @@ import com.javaprojects.bugtracker.service.UserService;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	// add a reference to our security data source
 	
@@ -37,11 +37,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		
 		http.authorizeRequests()
-			
-			.antMatchers("/bug-tracker/").hasRole("DEVELOPER")
-			//.antMatchers("/bug-tracker/bugs**").hasAnyRole("DEVELOPER", "ADMIN")
-			//.antMatchers("/bug-tracker/bug-**").hasRole("DEVELOPER")
-			//.antMatchers("/bug-tracker/employee**").hasRole( "ADMIN")
+		.antMatchers("/", "/bug-tracker/").hasRole("DEVELOPER")
+			.antMatchers("/bug**").hasRole("DEVELOPER")
+			.antMatchers("/user**").hasRole("ADMIN")
 				
 			.and()
 			.formLogin()
@@ -52,7 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.and()
 			.logout().permitAll()
 			.and()
-			.exceptionHandling().accessDeniedPage("/bug-tracker/access-denied");
+			.exceptionHandling().accessDeniedPage("/access-denied");
 	}
 	
 	// bcrypt bean definition

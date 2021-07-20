@@ -30,12 +30,12 @@ public class AppController {
 		this.userService = userService;
 	}
 	
-	//Redirect to index.html
+	
 	@GetMapping("/")
-	public String getHomePage() {
+	public String showHome() {
+		
 		return "view/bugs";
 	}
-	
 	
 	/**************BUg CRUD**************************/
 	// Add mapping for get list of bugs
