@@ -89,6 +89,8 @@ public class UserServiceImpl implements UserService {
 		// Assign default role of DEVELOPER
 		user.setRoles(Arrays.asList(roleDao.findRoleByName("ROLE_DEVELOPER")));
 		
+		// Enable the user
+	
 		// Save the custom user into  the User of database
 		userDao.save(user);
 		

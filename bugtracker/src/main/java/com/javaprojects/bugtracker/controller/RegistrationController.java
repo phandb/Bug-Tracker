@@ -22,7 +22,7 @@ import com.javaprojects.bugtracker.service.UserService;
 
 
 @Controller
-@RequestMapping("/register")
+@RequestMapping("/bug-tracker")
 public class RegistrationController {
 	
     @Autowired
@@ -38,7 +38,7 @@ public class RegistrationController {
 		dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
 	}	
 	
-	@GetMapping("/showRegistrationForm")
+	@GetMapping("/registrationForm")
 	public String showMyLoginPage(Model theModel) {
 		
 		theModel.addAttribute("customUser", new CustomUser());

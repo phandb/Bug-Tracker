@@ -116,7 +116,7 @@ public class AppController {
 		List<User> users = userService.findAll();
 		
 		//Add the list of user to model attribute employee
-		theModel.addAttribute("employees", users);
+		theModel.addAttribute("users", users);
 		
 		// return the list to users html
 		return "view/admin/users.html";
@@ -130,7 +130,7 @@ public class AppController {
 		User user = new User();
 		
 		//Access data for binding from employee attribute
-		theModel.addAttribute("employee", user);
+		theModel.addAttribute("user", user);
 		
 		//
 		return "view/admin/user-form";
@@ -144,7 +144,7 @@ public class AppController {
 		User user = userService.findById(theId);
 		
 		// Set the employee as a model attribute and populate it to a form
-		theModel.addAttribute("employee", user);
+		theModel.addAttribute("user", user);
 		
 		//  Send over to the employee created in adding section
 		return "view/admin/user-form"; // view/admin is sub-directory of templates
@@ -152,7 +152,7 @@ public class AppController {
 	
 	// Processing save user
 	@PostMapping("/user-save")
-	public String saveUser(@ModelAttribute("employee") User user) {
+	public String saveUser(@ModelAttribute("user") User user) {
 		// "employee" data binding from the employee form
 		
 		//save employee info
