@@ -172,6 +172,23 @@ public class User {
 		
 		bugs.add(bug);
 	}
+	
+	// Add role to user
+	public void addRoleToEmployee(Role role) {
+		
+		if (roles == null) {
+			roles = new HashSet<>();
+		}
+		
+		roles.add(role);
+	}
+	
+	// Remove role from employee
+	public void removeRoleFromEmployee(int roleId) {
+		
+		
+		//roles.remove(roles.roleId);
+	}
 
 	// toString
 	@Override

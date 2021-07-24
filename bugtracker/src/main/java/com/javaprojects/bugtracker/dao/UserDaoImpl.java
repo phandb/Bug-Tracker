@@ -31,7 +31,7 @@ public class UserDaoImpl implements UserDao {
 		Session currentSession = entityManager.unwrap(Session.class);
 		
 		// Create a query using native Hibernate
-		Query<User> query = currentSession.createQuery("from User", User.class);
+		Query<User> query = currentSession.createQuery("from User ", User.class);
 		
 		// Execute the query and get result list
 		List<User> users = query.getResultList();

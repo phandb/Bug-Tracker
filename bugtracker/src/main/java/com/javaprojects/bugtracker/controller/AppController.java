@@ -1,5 +1,6 @@
 package com.javaprojects.bugtracker.controller;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -24,6 +25,8 @@ public class AppController {
 	
 	private UserService userService;
 	
+
+	
 	public AppController(BugService bugService, UserService userService) {
 		
 		this.bugService = bugService;
@@ -34,7 +37,7 @@ public class AppController {
 	@GetMapping("/")
 	public String showHome() {
 		
-		return "view/bugs";
+		return "index";
 	}
 	
 	/**************BUg CRUD**************************/
@@ -52,7 +55,7 @@ public class AppController {
 	}
 	
 	// Add mapping for adding bug
-	@GetMapping("/bug-adding-form")  //  This appears in URL
+	@GetMapping("/bug/adding-form")  //  This appears in URL
 	public String getBugAddingForm(Model theModel) {
 		
 		// create model attribute to bind form data
@@ -67,7 +70,7 @@ public class AppController {
 	}
 	
 	// Get Update Form
-	@GetMapping("/bug-updating-form")
+	@GetMapping("/bug/updating-form")
 	public String getBugUpdatingForm(@RequestParam("bugId") int theId,
 			                         Model theModel){
 		// Get the bug from service
@@ -82,7 +85,7 @@ public class AppController {
 	
 	
 	// Processing to save bug
-	@PostMapping("/bug-save")
+	@PostMapping("/bug/save")
 	public String saveBug(@ModelAttribute("bug") Bug theBug) {
 		// data binding "bug" passed from bug-form
 		
@@ -98,7 +101,7 @@ public class AppController {
 	}
 	
 	// Delete bug
-	@GetMapping("/bug-delete")
+	@GetMapping("/bug/delete")
 	public String deleteBug(@RequestParam("bugId") int theId) {
 		// Delete the bug
 		bugService.deleteById(theId);
@@ -124,7 +127,7 @@ public class AppController {
 	}
 	
 	// Adding employee form
-	@GetMapping("/user-adding-form")
+	@GetMapping("/user/adding-form")
 	public String getUserAddingForm(Model theModel) {
 		// Create a model attribute to bind form data
 		User user = new User();
@@ -138,7 +141,7 @@ public class AppController {
 	}
 	
 	// Get update employee form
-	@GetMapping("/user-updating-form")
+	@GetMapping("/user/updating-form")
 	public String getUserUpdatingForm(@RequestParam("userId") int theId, Model theModel) {
 		// Get the employee from service
 		User user = userService.findById(theId);
@@ -151,9 +154,15 @@ public class AppController {
 	}
 	
 	// Processing save user
-	@PostMapping("/user-save")
+	@PostMapping("/user/save")
 	public String saveUser(@ModelAttribute("user") User user) {
 		// "employee" data binding from the employee form
+		
+		/*if (user.getPosition() == "Lead") {
+			
+			user.setRoles(Arrays.asList(userService.addRoleAdminToEmployee(user.getId())));
+			
+		}*/
 		
 		//save employee info
 		userService.save(user);
@@ -164,7 +173,7 @@ public class AppController {
 	}
 	
 	// Delete user
-	@GetMapping("/user-delete")
+	@GetMapping("/user/delete")
 	public String deleteUser(@RequestParam("userId") int theId) {
 		// Delete the employee
 		userService.deleteById(theId);

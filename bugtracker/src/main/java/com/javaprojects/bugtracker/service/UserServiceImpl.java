@@ -95,6 +95,14 @@ public class UserServiceImpl implements UserService {
 		userDao.save(user);
 		
 	}
+	
+	@Override
+	@Transactional
+	public User addRoleAdminToEmployee(int id) {
+		User user = findById(id);
+		user.setRoles(Arrays.asList(roleDao.findRoleByName("ROLE_ADMIN")));
+		return user;
+	}
 
 	// -----------CRUD------------
 	

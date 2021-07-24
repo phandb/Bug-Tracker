@@ -63,7 +63,7 @@ public class RoleDaoImpl implements RoleDao {
 		Query<Role> query = currentSession.createQuery("from Role", Role.class);
 				
 		// Execute the query and get result list
-		List<Role> roles = query.getResultList();
+		 List<Role> roles = query.getResultList();
 				
 		// Return the results
 		return roles;

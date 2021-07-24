@@ -22,4 +22,6 @@ public interface UserService extends UserDetailsService {
 	
 	public void saveCustomUser(CustomUser customUser);
 
+	public User addRoleAdminToEmployee(int id);
+
 }

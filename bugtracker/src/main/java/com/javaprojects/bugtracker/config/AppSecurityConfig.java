@@ -37,9 +37,9 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		
 		http.authorizeRequests()
-		.antMatchers("/", "/bug-tracker/").hasRole("DEVELOPER")
-			.antMatchers("/bug**").hasRole("DEVELOPER")
-			.antMatchers("/user**").hasRole("ADMIN")
+			.antMatchers("/", "/bug-tracker", "/bug-tracker/").hasRole("DEVELOPER")
+			.antMatchers("/bug/**").hasRole("DEVELOPER")
+			.antMatchers("/user/**").hasRole("ADMIN")
 				
 			.and()
 			.formLogin()
