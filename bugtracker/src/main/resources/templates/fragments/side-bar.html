@@ -6,19 +6,19 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Core</div>
-                            <a class="nav-link" href="bugs">
+                            <a class="nav-link" th:href="@{bugs}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
                             <div class="sb-sidenav-menu-heading">Interface</div>
                             
-                            <a class="nav-link " href="bugs" >
+                            <a class="nav-link " th:href="@{bugs}" >
                                 <div class="sb-nav-link-icon"><i class="fas fa-bug fa-fw"></i></div>
                                 Bugs
                                 
                             </a>
                             
-                            <a class="nav-link " href="users" sec:authorize="hasRole('ROLE_ADMIN')">
+                            <a class="nav-link "th:href="@{users}" sec:authorize="hasRole('ROLE_ADMIN')">
                                 <div class="sb-nav-link-icon"><i class="fas fa-user fa-fw"></i></div>
                                 Employees
                                 
