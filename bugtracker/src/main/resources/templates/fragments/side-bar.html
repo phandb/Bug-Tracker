@@ -28,8 +28,11 @@
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">
-                        <div class="small">Logged in as: 
-                        	<span sec:authentication="name"></span>
+                        <div class="small" >Logged in as: 
+                        	<!--  <span sec:authentication="name">	</span>  -->
+                        	
+                        	<span th:text="${#httpSession.getAttribute('userFullName')}"></span>
+                        
                         </div>
                         
                     </div>

@@ -37,7 +37,9 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 		
 		// Place the login employee in the session
 		HttpSession session = request.getSession();
-		session.setAttribute("user", theUser);
+		session.setAttribute("loggedInUser", theUser);
+		session.setAttribute("userFullName", theUser.getFullName());
+		
 		
 		// forward to home page
 		response.sendRedirect(request.getContextPath() + "/");

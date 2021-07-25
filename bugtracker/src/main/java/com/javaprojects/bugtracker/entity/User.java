@@ -19,6 +19,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Table(name="user")
@@ -188,6 +189,11 @@ public class User {
 		
 		
 		//roles.remove(roles.roleId);
+	}
+	
+	// Get full name method
+	public String getFullName() {
+		return " " + getFirstName() + " " + getLastName() + "";
 	}
 
 	// toString
