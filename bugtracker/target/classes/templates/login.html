@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" 
+                xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+
+     <head th:insert="fragments/head :: header-files">
+        <!--  Insert head in fragments/head here -->
+        
+             
+    </head>
+    
+    
+    <body class="bg-primary">
+        <div id="layoutAuthentication">
+            <div id="layoutAuthentication_content">
+                <main>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-5">
+                                <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Login</h3></div>
+                                    <div class="card-body">
+                                    
+                                    <!--  Login Form  -->
+                                        <form th:action="@{/authenticateTheUser}" method="POST">
+                                        
+                                        	<!--  Error Message -->
+                                        	
+                                        	<div class="form-group">
+                                        		<div class="col-xs-15">
+                                        			<div>
+                                        				<!-- Check for login error -->
+                                        				<div th:if="${param.error}">
+                                        					<div class="alert alert-danger col-xs-offset-1 col-xs-10">
+                                        						Invalid username and password.
+                                        					</div>
+                                        				</div>
+                                        				
+                                        				<!--  Check for logout -->
+                                        				
+                                        				<div th:if="${param.logout}">
+                                        					<div class="alert alert-success col-xs-offset-1 col-xs-10">
+                                        						You have been logged out.
+                                        					</div>
+                                        				</div>
+                                        				
+                                        			</div>
+                                        			
+                                        		</div>
+                                        	</div>
+                                            
+                                            <!-- Uesrname -->
+                                            <div class="form-floating mb-3">
+                                                <input type="text" name="username" class="form-control" id="inputUsername"  placeholder="username" />
+                                                <label for="inputUsername">username</label>
+                                            </div>
+                                            
+                                            <!-- Password -->
+                                            <div class="form-floating mb-3">
+                                                <input type="password" name="password" class="form-control" id="inputPassword"  placeholder="password" />
+                                                <label for="inputPassword">password</label>
+                                            </div>
+                                            <!--  
+                                            <div class="form-check mb-3">
+                                                <input class="form-check-input" id="inputRememberPassword" type="checkbox" value="" />
+                                                <label class="form-check-label" for="inputRememberPassword">Remember Password</label>
+                                            </div>
+                                            -->
+                                            
+                                            <!-- Login/Submit Button -->
+                                            <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+                                              <!--   
+                                              <a class="small" href="password.html">Forgot Password?</a> 
+                                               --> 
+                                                <button type="submit" class="btn btn-outline-primary"  >Login</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="card-footer text-center py-3">
+                                        <div class="small"><a th:href="@{registrationForm}">Need an account? Sign up!</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+            <div id="layoutAuthentication_footer">
+            
+ 				<footer th:insert="fragments/footer :: footer" class="py-4 bg-light mt-auto">
+                    <!--  Insert footer here -->
+                </footer>
+            </div>
+        </div>
+        
+    </body>
+</html>

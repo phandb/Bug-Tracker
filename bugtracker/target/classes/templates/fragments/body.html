@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+    <main th:fragment="main-body">
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">Bug Tracker Management</h1>
+                        
+
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                 Bug List
+                            </div>
+                            <div class="card-body">
+						         <!--  Adding Button  -->
+						         <a th:href="@{/bug-tracker/showFormForAdd}"
+						         	class="btn btn-outline-primary m-3"> Add New Bug</a>
+						         	
+						         	
+						         <table class="table table-striped">
+						         	<thead>
+							         	<tr>
+							               
+							               <th scope="col">Type</th>
+							               <th scope="col">Issued Date</th>
+							               <th scope="col">Created By</th>
+							               <th scope="col">Status</th>
+							               <th scope="col">Description</th>
+							               <th scope="col">Tips</th>
+							               <th scope="col">Solved By</th>
+							               <th scope="col">Action</th>
+							            </tr>
+						         	</thead>
+						         	
+						         	<tbody>
+						         		<tr th:each="bug : ${bugs}">
+						         		
+							               <td th:text="${bug.type}" ></td>
+							               <td th:text="${#dates.format(bug.issuedOn, 'MM-dd-yyyy')}" ></td>
+							               <td th:text="${bug.createdBy}" ></td>
+							               <td th:text="${bug.status}" ></td>
+							               <td th:text="${bug.description}" ></td>
+							               <td th:text="${bug.tips}" ></td>
+							               <td th:text="${bug.solvedBy}" ></td>
+							              
+							               <td>
+							               	 <!-- Add Update Button/Link  -->
+								               	<a th:href="@{/bug-tracker/showFormForUpdate(bugId=${bug.id} )}" 
+								               		class="btn btn-outline-info btn-sm">
+								               		Update
+								               	</a>
+								               	 <!-- Add Delete Button/Link  -->
+								               	<a th:href="@{/bug-tracker/deleteBug(bugId=${bug.id} )}" 
+								               		class="btn btn-outline-danger btn-sm"
+								               		onclick="if (!(confirm('Are you sure to delete this bug?'))) return false">
+								               		Delete
+								               	</a>
+								               	
+							               	</td>
+							               
+							           	 </tr>
+						         	</tbody>
+						            
+						            
+						            
+						         </table>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+</body>
+</html>

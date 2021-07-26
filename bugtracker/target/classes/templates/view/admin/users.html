@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+
+    <head th:insert="fragments/head :: header-files">
+        <!--  Insert head in fragments/head here -->
+      
+    </head>
+    
+    <!-- BODY  -->
+    <body class="sb-nav-fixed">
+    <!-- NAV BAR -->
+        <nav th:insert="fragments/nav-bar :: navbar" class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+            <!-- Navbar inserted here-->
+            
+        </nav>
+        
+      <!--  SIDE BAR -->  
+        <div id="layoutSidenav">
+            <div id="layoutSidenav_nav" th:replace="fragments/side-bar :: sidebar">
+                
+                <!--  Side bar inserted here -->
+            </div>
+            
+      <!-- Staring main content -->      
+            <div id="layoutSidenav_content">
+            
+            <!--  We change main content in the main section -->
+                <main>
+                    <div class="container-fluid px-4">
+                        <!--  <h1 class="mt-4">Bug Tracker Management</h1> -->
+                        
+
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                 Employee List
+                            </div>
+                            <div class="card-body">
+						         <!--  Adding Button --  New Employee should be added in registration
+						         <a th:href="@{/bug-tracker/user-adding-form}"
+						         	class="btn btn-outline-primary m-3"> Add New Employee </a>
+						         	 -->
+						         	
+						         <table class="table table-striped">
+						         	<thead>
+							         	<tr>
+							               
+							               <th scope="col">First Name</th>
+							               <th scope="col">Last Name</th>
+							               <th scope="col">Position</th>
+							               <th scope="col">Role</th>
+							               
+							               <th scope="col">Action</th>
+							            </tr>
+						         	</thead>
+						         	
+						         	<tbody>
+						         		<!-- model attribute: employees -->
+						         		<tr th:each="user : ${users}">
+						         		
+							               <td th:text="${user.firstName}" ></td>
+							               <td th:text="${user.lastName}" ></td>
+							               <td th:text="${user.position}" ></td>
+							               
+							               
+							               							              
+							               <td>
+							               	 <!-- Add Update Button/Link  -->
+								               	<a th:href="@{/bug-tracker/user/updating-form(userId=${user.id} )}" 
+								               		class="btn btn-outline-info btn-sm">
+								               		Update
+								               	</a>
+								               	 <!-- Add Delete Button/Link  -->
+								               	<a th:href="@{/bug-tracker/user/delete(userId=${user.id} )}" 
+								               		class="btn btn-outline-danger btn-sm"
+								               		onclick="if (!(confirm('Are you sure to delete this employee?'))) return false">
+								               		Delete
+								               	</a>
+								               	
+							               	</td>
+							               
+							           	 </tr>
+						         	</tbody>
+						            
+						            
+						            
+						         </table>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+ 
+ 
+ <!--  FOOTER  -->               
+                <footer th:insert="fragments/footer :: footer" class="py-4 bg-light mt-auto">
+                    <!--  Insert footer here -->
+                </footer>
+                
+      <!--  END of FOOTER -->
+            </div>
+        </div>
+      <!--  END of SIDE BAR -->
+      
+      
+    </body>
+</html>

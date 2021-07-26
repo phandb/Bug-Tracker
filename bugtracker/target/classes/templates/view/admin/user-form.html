@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+
+    <head th:insert="fragments/head :: header-files">
+        <!--  Insert head in fragments/head here -->
+      
+    </head>
+    
+    <!-- BODY  -->
+    <body class="sb-nav-fixed">
+    <!-- NAV BAR -->
+        <nav th:insert="fragments/nav-bar :: navbar" class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+            <!-- Navbar inserted here-->
+            
+        </nav>
+        
+      <!--  SIDE BAR -->  
+        <div id="layoutSidenav">
+            <div id="layoutSidenav_nav" th:replace="fragments/side-bar :: sidebar">
+                
+                <!--  Side bar inserted here -->
+            </div>
+            
+      <!-- Staring main content -->      
+            <div id="layoutSidenav_content">
+            
+            <!--  THE MAIN SECTION BELOW NEED TO BE CHANGED-->
+                <main>
+                    <div class="container-fluid px-4">
+                        <!--  <h1 class="mt-4">Bug Tracker Management</h1> -->
+                        
+
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                 Save Employee
+                            </div>
+                            <div class="card-body align-self-center" style="width: 60%;">
+						            		
+						   								   		
+						   		<form action="#" th:action="@{/bug-tracker/user/save}"
+						   						th:object="${user}" method="POST">
+						   						
+						   			<!--  For updating, it isrequired to have a hidden field to hold 
+						   			an id for updating.  Otherwise, which one need to be update? -->
+						   			<input type="hidden" th:field="*{id}"/>
+						   						
+						   			<input type="text" th:field= "*{firstName}"
+						   					class="form-control mb-4 col-4" placeholder="First Name">
+						   					
+						   			<input type="text" th:field= "*{lastName}"
+						   					class="form-control mb-4 col-4" placeholder="Last Name">
+						   					
+						   			
+						   			<select th:field="*{position}" class="form-control form-select mb-4 col-4"  >
+	                                    <option th:value="'Engineer'" th:text="Engineer"></option>       		
+										<option th:value="'Lead'" th:text="Lead"></option>
+										
+									</select>
+									
+									
+						   			<input type="hidden" th:field= "*{userName}"
+						   					class="form-control mb-4 col-4" placeholder="Username">
+						   			
+									<input type="hidden" th:field= "*{password}"
+						   					class="form-control mb-4 col-4" placeholder="Password">
+						   					
+						   									   			
+						   			<button type="submit" class="btn btn-info col-2"> Save </button>		
+						   		</form>
+						   		
+						   		<hr>
+						   		<a th:href="@{/bug-tracker/users}">Back to Employee List</a>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+ 
+ 
+ <!--  FOOTER  -->               
+                <footer th:insert="fragments/footer :: footer" class="py-4 bg-light mt-auto">
+                    <!--  Insert footer here -->
+                </footer>
+                
+      <!--  END of FOOTER -->
+            </div>
+        </div>
+      <!--  END of SIDE BAR -->
+      
+      
+    </body>
+</html>
+

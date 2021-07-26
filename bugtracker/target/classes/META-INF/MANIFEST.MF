@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Built-By: phand
+Build-Jdk: 13.0.2
+Implementation-Title: bugtracker
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: com.javaprojects
+Implementation-URL: https://spring.io/projects/spring-boot/bugtracker
+Created-By: Maven Integration for Eclipse
+

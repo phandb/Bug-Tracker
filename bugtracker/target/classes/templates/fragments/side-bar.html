@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<body>
+    <div th:fragment="sidebar" id="layoutSidenav_nav">
+                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                    <div class="sb-sidenav-menu">
+                        <div class="nav">
+                            <div class="sb-sidenav-menu-heading">Core</div>
+                            <a class="nav-link" th:href="@{bugs}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Dashboard
+                            </a>
+                            <div class="sb-sidenav-menu-heading">Interface</div>
+                            
+                            <a class="nav-link " th:href="@{bugs}" sec:authorize="hasRole('ROLE_DEVELOPER')">
+                                <div class="sb-nav-link-icon"><i class="fas fa-bug fa-fw"></i></div>
+                                Bugs
+                                
+                            </a>
+                            
+                            <a class="nav-link "th:href="@{users}" sec:authorize="hasRole('ROLE_ADMIN')">
+                                <div class="sb-nav-link-icon"><i class="fas fa-user fa-fw"></i></div>
+                                Employees
+                                
+                            </a>
+                            
+                            
+                        </div>
+                    </div>
+                    <div class="sb-sidenav-footer">
+                        <div class="small" >Logged in as: 
+                        	<!--  <span sec:authentication="name">	</span>  -->
+                        	
+                        	<span th:text="${#httpSession.getAttribute('userFullName')}"></span>
+                        
+                        </div>
+                        
+                    </div>
+                </nav>
+            </div>
+</body>
+</html>
