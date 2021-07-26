@@ -90,6 +90,7 @@ public class UserServiceImpl implements UserService {
 		user.setRoles(Arrays.asList(roleDao.findRoleByName("ROLE_DEVELOPER")));
 		
 		// Enable the user
+		
 	
 		// Save the custom user into  the User of database
 		userDao.save(user);
@@ -98,10 +99,13 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	@Transactional
-	public User addRoleAdminToEmployee(int id) {
-		User user = findById(id);
-		user.setRoles(Arrays.asList(roleDao.findRoleByName("ROLE_ADMIN")));
-		return user;
+	public void addRoleAdminToEmployee(int id) {
+		User updatingUser = findById(id);
+		updatingUser.setRoles(Arrays.asList(roleDao.findRoleByName("ROLE_DEVELOPER")));
+		Role tempRole = roleDao.findRoleByName("ROLE_ADMIN");
+		tempRole.addRoleToEmployee(updatingUser);
+		
+		//return updatingUser;
 	}
 
 	// -----------CRUD------------
@@ -126,8 +130,15 @@ public class UserServiceImpl implements UserService {
 	@Override
 	@Transactional
 	public void save(User user) {
+		
+		
 		// Delegate to DAO
 		userDao.save(user);
+		
+
+		if (user.getPosition().equals("Lead")) {
+			addRoleAdminToEmployee(user.getId());
+		}
 		
 	}
 

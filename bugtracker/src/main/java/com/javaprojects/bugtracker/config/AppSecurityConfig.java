@@ -38,8 +38,8 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		http.authorizeRequests()
 			.antMatchers("/", "/bug-tracker", "/bug-tracker/").hasRole("DEVELOPER")
-			.antMatchers("/bug/**").hasRole("DEVELOPER")
-			.antMatchers("/user/**").hasRole("ADMIN")
+			.antMatchers("/bug-tracker/bug**/**").hasRole("DEVELOPER")
+			.antMatchers("/bug-tracker/user**/**").hasRole("ADMIN")
 				
 			.and()
 			.formLogin()
@@ -50,7 +50,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 			.and()
 			.logout().permitAll()
 			.and()
-			.exceptionHandling().accessDeniedPage("/access-denied");
+			.exceptionHandling().accessDeniedPage("/bug-tracker/access-denied");
 	}
 	
 	// bcrypt bean definition

@@ -62,10 +62,14 @@ public class User {
 	private Set<Bug> bugs = new HashSet<>();
 	
 	// Configure many to many with role
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinTable(name = "users_roles", 
-	joinColumns = @JoinColumn(name = "user_id"), 
-	inverseJoinColumns = @JoinColumn(name = "role_id"))
+	@ManyToMany(
+			fetch = FetchType.LAZY, 
+			cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+		    		  CascadeType.DETACH, CascadeType.REFRESH })
+	@JoinTable(
+			name = "users_roles", 
+			joinColumns = @JoinColumn(name = "user_id"), 
+			inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Collection<Role> roles;
 	
 	// Define constructor
@@ -75,7 +79,7 @@ public class User {
 	}
 
 	public User(String firstName, String lastName, String position, String userName, String password,
-			Collection<Role> roles) {
+			Set<Role> roles) {
 		
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -174,15 +178,7 @@ public class User {
 		bugs.add(bug);
 	}
 	
-	// Add role to user
-	public void addRoleToEmployee(Role role) {
-		
-		if (roles == null) {
-			roles = new HashSet<>();
-		}
-		
-		roles.add(role);
-	}
+	
 	
 	// Remove role from employee
 	public void removeRoleFromEmployee(int roleId) {

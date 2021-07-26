@@ -51,17 +51,20 @@
 						   					
 						   			<input type="text" th:field= "*{lastName}"
 						   					class="form-control mb-4 col-4" placeholder="Last Name">
-						   			<!-- 
-						   			<input type="text" th:field= "*{position}"
-						   					class="form-control mb-4 col-4" placeholder="Position">
 						   					
-						   			 -->		
 						   			
 						   			<select th:field="*{position}" class="form-control form-select mb-4 col-4"  >
-	                                           		
+	                                    <option th:value="'Engineer'" th:text="Engineer"></option>       		
 										<option th:value="'Lead'" th:text="Lead"></option>
-										 <option th:value="'Engineer'" th:text="Engineer"></option>
+										
 									</select>
+									
+									
+						   			<input type="hidden" th:field= "*{userName}"
+						   					class="form-control mb-4 col-4" placeholder="Username">
+						   			
+									<input type="hidden" th:field= "*{password}"
+						   					class="form-control mb-4 col-4" placeholder="Password">
 						   					
 						   									   			
 						   			<button type="submit" class="btn btn-info col-2"> Save </button>		

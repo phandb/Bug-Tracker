@@ -96,7 +96,7 @@ public class AppController {
 		// use a redirect to prevent duplicate submission
 		// Go straight back to the main page: bug-tracker/bugs
 		// This is URL not a file
-		return "redirect:bugs";
+		return "redirect:../bugs";
 		
 	}
 	
@@ -107,7 +107,7 @@ public class AppController {
 		bugService.deleteById(theId);
 		
 		// Redirect back to /bug-tracker/bugs
-		return "redirect:bugs";
+		return "redirect:../bugs";
 	}
 	
 	/*********************User CRUD**********************************/
@@ -158,18 +158,14 @@ public class AppController {
 	public String saveUser(@ModelAttribute("user") User user) {
 		// "employee" data binding from the employee form
 		
-		/*if (user.getPosition() == "Lead") {
+
 			
-			user.setRoles(Arrays.asList(userService.addRoleAdminToEmployee(user.getId())));
-			
-		}*/
-		
 		//save employee info
 		userService.save(user);
 		
 		// Use redirect to prevent duplicate submission
-		//go to URL bug-tracker/employees
-		return "redirect:users";
+		//go to URL bug-tracker/users
+		return "redirect:../users";
 	}
 	
 	// Delete user
@@ -179,6 +175,6 @@ public class AppController {
 		userService.deleteById(theId);
 		
 		//redirect back to /bug-tracker/users
-		return "redirect:users";
+		return "redirect:../users";
 	}
 }

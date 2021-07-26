@@ -1,6 +1,8 @@
 package com.javaprojects.bugtracker.config;
 
 import java.io.IOException;
+import java.util.Collection;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -9,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
@@ -31,7 +34,11 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 		
 		String userName = authentication.getName();
 		
+
+		Collection<? extends GrantedAuthority> userRoles = authentication.getAuthorities();
+		
 		System.out.println("userName: " + userName);
+		System.out.println("userRoles:" + userRoles);
 		
 		User theUser = userService.findByUserName(userName);
 		
